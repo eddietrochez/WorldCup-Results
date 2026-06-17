@@ -30,6 +30,9 @@
             color: #60a5fa;
             background: rgba(30, 64, 175, 0.25);
         }
+        .font-control {
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -41,10 +44,18 @@
         </div>
 
         <div class="card p-4 mb-4 bg-dark border-0">
-            <div class="row g-3">
-                <div class="col-12">
+            <div class="row g-3 align-items-end">
+                <div class="col-7">
                     <label class="form-label fw-bold text-light">Seleccionar Fecha</label>
                     <input type="date" id="fecha" class="form-control form-control-lg">
+                </div>
+                <div class="col-5">
+                    <label class="form-label fw-bold text-light text-center d-block">Tamaño Letra</label>
+                    <div class="input-group font-control">
+                        <button onclick="cambiarFuente(-1)" class="btn btn-outline-light">-</button>
+                        <span id="fontSizeDisplay" class="form-control text-center bg-dark text-white">14</span>
+                        <button onclick="cambiarFuente(1)" class="btn btn-outline-light">+</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,6 +74,17 @@
     </div>
 
     <script>
+        let currentFontSize = 14;
+
+        // Load saved font size
+        function loadFontSize() {
+            const saved = localStorage.getItem('quinielaFontSize');
+            if (saved) {
+                currentFontSize = parseInt(saved);
+            }
+            document.getElementById('fontSizeDisplay').textContent = currentFontSize;
+        }
+
         async function cargarDatos() {
             const fecha = document.getElementById('fecha').value;
             const loading = document.getElementById('loading');
@@ -100,7 +122,7 @@
 
             let html = `
                 <div class="table-responsive">
-                    <table class="table table-dark table-hover align-middle">
+                    <table class="table table-dark table-hover align-middle" id="mainTable">
                         <thead>
                             <tr>
                                 <th>Participante</th>
@@ -128,11 +150,27 @@
 
             html += `</tbody></table></div>`;
             container.innerHTML = html;
+            aplicarFuente();
+        }
+
+        function cambiarFuente(delta) {
+            currentFontSize = Math.max(11, Math.min(22, currentFontSize + delta));
+            document.getElementById('fontSizeDisplay').textContent = currentFontSize;
+            localStorage.setItem('quinielaFontSize', currentFontSize);
+            aplicarFuente();
+        }
+
+        function aplicarFuente() {
+            const table = document.getElementById('mainTable');
+            if (table) {
+                table.style.fontSize = currentFontSize + 'px';
+            }
         }
 
         document.getElementById('fecha').addEventListener('change', cargarDatos);
         
         window.onload = () => {
+            loadFontSize();
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('fecha').value = today;
             cargarDatos();
