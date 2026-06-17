@@ -7,37 +7,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
-            color: #e2e8f0;
-            min-height: 100vh;
-        }
-        .header {
-            background: linear-gradient(90deg, #1e40af, #3b82f6);
-            border-radius: 12px;
-            padding: 1.2rem;
-        }
-        .table {
-            background: rgba(15, 23, 42, 0.95);
-        }
-        th { 
-            background: #1e40af !important;
-            position: sticky;
-            top: 0;
-        }
-        .participante-cell {
-            font-weight: bold;
-            color: #60a5fa;
-            background: rgba(30, 64, 175, 0.25);
-        }
-        .font-control {
-            font-size: 1.1rem;
-        }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); color: #e2e8f0; min-height: 100vh; }
+        .header { background: linear-gradient(90deg, #1e40af, #3b82f6); border-radius: 12px; padding: 1.2rem; }
+        th { background: #1e40af !important; position: sticky; top: 0; }
+        .participante-cell { font-weight: bold; color: #60a5fa; background: rgba(30, 64, 175, 0.3); }
+        .font-control { font-size: 1.1rem; }
+        table { font-size: 14px; } /* default */
     </style>
 </head>
 <body>
     <div class="container py-4">
-
         <div class="header text-center text-white mb-4">
             <h2><i class="fas fa-trophy"></i> Quinielas Mundial 2026</h2>
             <p class="mb-0">Predicciones del Día</p>
@@ -50,11 +29,11 @@
                     <input type="date" id="fecha" class="form-control form-control-lg">
                 </div>
                 <div class="col-5">
-                    <label class="form-label fw-bold text-light text-center d-block">Tamaño Letra</label>
+                    <label class="form-label fw-bold text-light text-center d-block">Tamaño</label>
                     <div class="input-group font-control">
-                        <button onclick="cambiarFuente(-1)" class="btn btn-outline-light">-</button>
-                        <span id="fontSizeDisplay" class="form-control text-center bg-dark text-white">14</span>
-                        <button onclick="cambiarFuente(1)" class="btn btn-outline-light">+</button>
+                        <button onclick="cambiarFuente(-2)" class="btn btn-outline-light btn-sm">-</button>
+                        <span id="fontSizeDisplay" class="form-control text-center bg-dark text-white fw-bold">14</span>
+                        <button onclick="cambiarFuente(2)" class="btn btn-outline-light btn-sm">+</button>
                     </div>
                 </div>
             </div>
@@ -76,66 +55,50 @@
     <script>
         let currentFontSize = 14;
 
+        function loadFontSize() {
+            const saved = localStorage.getItem('quinielaFontSize');
+            if (saved) currentFontSize = parseInt(saved);
+            document.getElementById('fontSizeDisplay').textContent = currentFontSize;
+        }
+
         async function cargarDatos() {
             const fecha = document.getElementById('fecha').value;
-            const loading = document.getElementById('loading');
-            const container = document.getElementById('tablaContainer');
-
-            loading.style.display = 'block';
-            container.innerHTML = '';
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('tablaContainer').innerHTML = '';
 
             try {
-                const response = await fetch('/obtener_datos', {
+                const res = await fetch('/obtener_datos', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ fecha })
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({fecha})
                 });
-
-                const result = await response.json();
+                const result = await res.json();
                 const datos = result.datos || {};
 
                 document.getElementById('totalParticipantes').textContent = Object.keys(datos).length;
                 renderTabla(datos);
-
-            } catch (err) {
-                container.innerHTML = `<div class="no-data text-danger">Error al cargar los datos</div>`;
+            } catch(e) {
+                document.getElementById('tablaContainer').innerHTML = `<div class="text-danger text-center p-4">Error de conexión</div>`;
             } finally {
-                loading.style.display = 'none';
+                document.getElementById('loading').style.display = 'none';
             }
         }
 
         function renderTabla(datos) {
             const container = document.getElementById('tablaContainer');
-            if (Object.keys(datos).length === 0) {
-                container.innerHTML = `<div class="no-data">No hay predicciones para esta fecha</div>`;
+            if (!Object.keys(datos).length) {
+                container.innerHTML = `<div class="text-center p-5 text-muted">No hay predicciones para esta fecha</div>`;
                 return;
             }
 
-            let html = `
-                <div class="table-responsive">
-                    <table class="table table-dark table-hover align-middle" id="mainTable">
-                        <thead>
-                            <tr>
-                                <th>Participante</th>
-                                <th>Encuentro</th>
-                                <th>Marcador</th>
-                                <th>Resultado</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
+            let html = `<div class="table-responsive"><table class="table table-dark table-hover" id="mainTable"><thead><tr><th>Participante</th><th>Encuentro</th><th>Marcador</th><th>Resultado</th></tr></thead><tbody>`;
 
-            Object.keys(datos).sort().forEach(participante => {
-                const partidos = datos[participante];
-                partidos.forEach((p, index) => {
+            Object.keys(datos).sort().forEach(part => {
+                const partidos = datos[part];
+                partidos.forEach((p, i) => {
                     html += `<tr>`;
-                    if (index === 0) {
-                        html += `<td rowspan="${partidos.length}" class="participante-cell">${participante}</td>`;
-                    }
-                    html += `
-                        <td>${p.encuentro}</td>
-                        <td class="text-warning fw-bold">${p.marcador}</td>
-                        <td>${p.resultado}</td>
-                    </tr>`;
+                    if (i === 0) html += `<td rowspan="${partidos.length}" class="participante-cell">${part}</td>`;
+                    html += `<td>${p.encuentro}</td><td class="text-warning fw-bold">${p.marcador}</td><td>${p.resultado}</td></tr>`;
                 });
             });
 
@@ -145,21 +108,21 @@
         }
 
         function cambiarFuente(delta) {
-            currentFontSize = Math.max(11, Math.min(20, currentFontSize + delta));
+            currentFontSize = Math.max(11, Math.min(24, currentFontSize + delta));
             document.getElementById('fontSizeDisplay').textContent = currentFontSize;
+            localStorage.setItem('quinielaFontSize', currentFontSize);
             aplicarFuente();
         }
 
         function aplicarFuente() {
             const table = document.getElementById('mainTable');
-            if (table) {
-                table.style.fontSize = currentFontSize + 'px';
-            }
+            if (table) table.style.fontSize = currentFontSize + 'px';
         }
 
         document.getElementById('fecha').addEventListener('change', cargarDatos);
-        
+
         window.onload = () => {
+            loadFontSize();
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('fecha').value = today;
             cargarDatos();
