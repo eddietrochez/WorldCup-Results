@@ -76,15 +76,6 @@
     <script>
         let currentFontSize = 14;
 
-        // Load saved font size
-        function loadFontSize() {
-            const saved = localStorage.getItem('quinielaFontSize');
-            if (saved) {
-                currentFontSize = parseInt(saved);
-            }
-            document.getElementById('fontSizeDisplay').textContent = currentFontSize;
-        }
-
         async function cargarDatos() {
             const fecha = document.getElementById('fecha').value;
             const loading = document.getElementById('loading');
@@ -154,9 +145,8 @@
         }
 
         function cambiarFuente(delta) {
-            currentFontSize = Math.max(11, Math.min(22, currentFontSize + delta));
+            currentFontSize = Math.max(11, Math.min(20, currentFontSize + delta));
             document.getElementById('fontSizeDisplay').textContent = currentFontSize;
-            localStorage.setItem('quinielaFontSize', currentFontSize);
             aplicarFuente();
         }
 
@@ -170,7 +160,6 @@
         document.getElementById('fecha').addEventListener('change', cargarDatos);
         
         window.onload = () => {
-            loadFontSize();
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('fecha').value = today;
             cargarDatos();
