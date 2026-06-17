@@ -2,10 +2,49 @@ import os
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 from collections import defaultdict
+import datetime
 
 app = Flask(__name__)
 
 CARPETA_QUINIELAS = os.path.join(os.path.dirname(__file__), 'quinielas')
+
+
+def limpiar_hora(val):
+    """
+    Normaliza el formato de la hora extraída de Excel de forma robusta.
+    Devuelve un string en formato 'HH:MM' o '99:99' si es inválido.
+    """
+    if pd.isna(val):
+        return "99:99"
+    
+    # Si viene como objeto datetime.time u objeto datetime
+    if isinstance(val, (datetime.time, datetime.datetime)):
+        return val.strftime('%H:%M')
+    
+    val_str = str(val).strip()
+    
+    # Si viene como flotante de Excel (ej: 0.5 para las 12:00 PM)
+    try:
+        if '.' in val_str and float(val_str) < 1.0:
+            segundos_totales = int(round(float(val_str) * 86400))
+            horas = segundos_totales // 3600
+            minutos = (segundos_totales % 3600) // 60
+            return f"{horas:02d}:{minutos:02d}"
+    except ValueError:
+        pass
+
+    # Si viene como texto 'HH:MM:SS' o 'HH:MM'
+    if ':' in val_str:
+        partes = val_str.split(':')
+        if len(partes) >= 2:
+            try:
+                h = int(float(partes[0]))
+                m = int(float(partes[1]))
+                return f"{h:02d}:{m:02d}"
+            except ValueError:
+                pass
+
+    return "99:99"
 
 
 def obtener_datos_internal(fecha_buscada):
@@ -75,6 +114,10 @@ def obtener_datos_internal(fecha_buscada):
                 goles_l = fila.iloc[col_gol_l_idx]
                 goles_v = fila.iloc[col_gol_v_idx]
 
+                # Extracción y limpieza robusta de la hora
+                hora_raw = fila.iloc[col_hora_idx] if col_hora_idx is not None else None
+                hora_limpia = limpiar_hora(hora_raw)
+
                 if pd.isna(goles_l) or pd.isna(goles_v):
                     marcador = "- / -"
                     resultado = "No ingresado"
@@ -89,14 +132,18 @@ def obtener_datos_internal(fecha_buscada):
                         resultado = "No ingresado"
 
                 resultados_por_participante[nombre].append({
+                    'hora': hora_limpia if hora_limpia != "99:99" else "--:--",
                     'encuentro': f"{local} vs {visita}",
                     'marcador': marcador,
                     'resultado': resultado
                 })
 
             if resultados_por_participante[nombre]:
-                # Sort by encounter order (as they appear in Excel)
-                pass
+                # Ordenar cronológicamente por el campo 'hora'
+                resultados_por_participante[nombre] = sorted(
+                    resultados_por_participante[nombre], 
+                    key=lambda x: x['hora'] if x['hora'] != "--:--" else "99:99"
+                )
 
         except Exception as e:
             print(f"Error procesando {archivo}: {e}")
