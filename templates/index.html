@@ -73,7 +73,7 @@
             font-size: 0.85em;
         }
         
-        /* Mini control de fuente estilo accesorio */
+        /* Mini control de fuente */
         .mini-font-control {
             display: flex;
             align-items: center;
@@ -158,6 +158,13 @@
             width: 1%; 
         }
 
+        /* NUEVO: Clase estilo "Ajustar texto" de Excel para los Participantes */
+        .col-ajustar-texto {
+            white-space: normal !important; /* Permite el quiebre de línea */
+            word-wrap: break-word;
+            max-width: 70px; /* Evita que la columna se estire de más horizontalmente */
+        }
+
         .tabla-oscura-custom th {
             background-color: #2563eb;
             color: white;
@@ -182,7 +189,6 @@
         .text-participante {
             font-weight: bold;
             background-color: #161f30;
-            white-space: nowrap;
         }
         .icono-reloj {
             color: #ffffff;
@@ -241,7 +247,7 @@
         <table class="tabla-oscura-custom" id="tabla-quinielas">
             <thead>
                 <tr>
-                    <th class="col-autoajuste">Participante</th>
+                    <th class="col-ajustar-texto">Participante</th>
                     <th class="col-autoajuste">Hora</th>
                     <th>Encuentro</th> 
                     <th class="col-autoajuste">Marcador</th>
@@ -330,7 +336,6 @@
         llavesParticipantes.forEach(participante => {
             let partidos = datos[participante];
             
-            // CORREGIDO: Comentario nativo de JS en barras diagonales para evitar errores de sintaxis
             partidos.sort((a, b) => {
                 let horaA = a.hora ? a.hora.trim() : "23:59";
                 let horaB = b.hora ? b.hora.trim() : "23:59";
@@ -343,7 +348,8 @@
 
                 let tdParticipante = '';
                 if (index === 0) {
-                    tdParticipante = `<td class="text-participante col-autoajuste" rowspan="${partidos.length}">${participante}</td>`;
+                    // Cambiamos 'col-autoajuste' por 'col-ajustar-texto' para permitir que el nombre quiebre líneas
+                    tdParticipante = `<td class="text-participante col-ajustar-texto" rowspan="${partidos.length}">${participante}</td>`;
                 }
 
                 let horaMostrar = partido.hora ? partido.hora : `<span style="color:#6b7280; font-size:0.9em;">N/A</span>`;
