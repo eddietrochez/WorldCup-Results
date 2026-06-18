@@ -330,10 +330,10 @@
         llavesParticipantes.forEach(participante => {
             let partidos = datos[participante];
             
-            # FILTRO DE ORDENACIÓN CRONOLÓGICA (Estilo Excel por Hora)
+            // CORREGIDO: Comentario nativo de JS en barras diagonales para evitar errores de sintaxis
             partidos.sort((a, b) => {
-                let horaA = a.hora || "23:59";
-                let horaB = b.hora || "23:59";
+                let horaA = a.hora ? a.hora.trim() : "23:59";
+                let horaB = b.hora ? b.hora.trim() : "23:59";
                 return horaA.localeCompare(horaB);
             });
             
