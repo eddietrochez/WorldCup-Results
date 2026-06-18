@@ -1,174 +1,184 @@
 {
-    "2026-06-11": {
-        "Resultado Real": [
-            {
-                "hora": "13:00",
-                "encuentro": "Mexico vs Sudáfrica",
-                "marcador": "2-0",
-                "resultado": "Mexico"
-            },
-            {
-                "hora": "20:00",
-                "encuentro": "Corea del Sur vs República Checa",
-                "marcador": "2-1",
-                "resultado": "Corea del Sur"
-            }
-        ]
-    },
-    "2026-06-12": {
-        "Resultado Real": [
-            {
-                "hora": "13:00",
-                "encuentro": "Canada vs Bosnia-Herzegovina",
-                "marcador": "1-1",
-                "resultado": "Empate"
-            },
-            {
-                "hora": "19:00",
-                "encuentro": "United States vs Paraguay",
-                "marcador": "4-1",
-                "resultado": "United States"
-            }
-        ]
-    },
-    "2026-06-13": {
-        "Resultado Real": [
-            {
-                "hora": "13:00",
-                "encuentro": "Qatar vs Switzerland",
-                "marcador": "1-1",
-                "resultado": "Empate"
-            },
-            {
-                "hora": "16:00",
-                "encuentro": "Brasil vs Morocco",
-                "marcador": "1-1",
-                "resultado": "Empate"
-            },
-            {
-                "hora": "19:00",
-                "encuentro": "Haiti vs Scotland",
-                "marcador": "0-1",
-                "resultado": "Scotland"
-            },
-            {
-                "hora": "22:00",
-                "encuentro": "Australia vs Turkey",
-                "marcador": "2-0",
-                "resultado": "Australia"
-            }
-        ]
-    },
-    "2026-06-14": {
-        "Resultado Real": [
-            {
-                "hora": "11:00",
-                "encuentro": "Alemania vs Curaçao",
-                "marcador": "7-1",
-                "resultado": "Alemania"
-            },
-            {
-                "hora": "14:00",
-                "encuentro": "Netherlands vs Japan",
-                "marcador": "2-2",
-                "resultado": "Empate"
-            },
-            {
-                "hora": "17:00",
-                "encuentro": "Ivory Coast vs Ecuador",
-                "marcador": "1-0",
-                "resultado": "Ivory Coast"
-            },
-            {
-                "hora": "20:00",
-                "encuentro": "Sweden vs Tunisia",
-                "marcador": "5-1",
-                "resultado": "Sweden"
-            }
-        ]
-    },
-    "2026-06-15": {
-        "Resultado Real": [
-            {
-                "hora": "10:00",
-                "encuentro": "España vs Cape Verde Islands",
-                "marcador": "0-0",
-                "resultado": "Empate"
-            },
-            {
-                "hora": "13:00",
-                "encuentro": "Belgium vs Egypt",
-                "marcador": "1-1",
-                "resultado": "Empate"
-            },
-            {
-                "hora": "16:00",
-                "encuentro": "Saudi Arabia vs Uruguay",
-                "marcador": "1-1",
-                "resultado": "Empate"
-            },
-            {
-                "hora": "19:00",
-                "encuentro": "Iran vs New Zealand",
-                "marcador": "2-2",
-                "resultado": "Empate"
-            }
-        ]
-    },
-    "2026-06-16": {
-        "Resultado Real": [
-            {
-                "hora": "13:00",
-                "encuentro": "Francia vs Senegal",
-                "marcador": "3-1",
-                "resultado": "Francia"
-            },
-            {
-                "hora": "16:00",
-                "encuentro": "Iraq vs Norway",
-                "marcador": "1-4",
-                "resultado": "Norway"
-            },
-            {
-                "hora": "19:00",
-                "encuentro": "Argentina vs Algeria",
-                "marcador": "3-0",
-                "resultado": "Argentina"
-            },
-            {
-                "hora": "22:00",
-                "encuentro": "Austria vs Jordan",
-                "marcador": "3-1",
-                "resultado": "Austria"
-            }
-        ]
-    },
-    "2026-06-17": {
-        "Resultado Real": [
-            {
-                "hora": "11:00",
-                "encuentro": "Portugal vs Congo DR",
-                "marcador": "1-1",
-                "resultado": "Empate"
-            },
-            {
-                "hora": "14:00",
-                "encuentro": "Inglaterra vs Croacia",
-                "marcador": "4-2",
-                "resultado": "Inglaterra"
-            },
-            {
-                "hora": "17:00",
-                "encuentro": "Ghana vs Panama",
-                "marcador": "1-0",
-                "resultado": "Ghana"
-            },
-            {
-                "hora": "20:00",
-                "encuentro": "Uzbekistan vs Colombia",
-                "marcador": "1-3",
-                "resultado": "Colombia"
-            }
-        ]
-    }
+  "2026-06-11": {
+    "Resultado Real": [
+      {
+        "hora": "13:00",
+        "encuentro": "Mexico vs Sudáfrica",
+        "marcador": "2-0",
+        "resultado": "Mexico"
+      },
+      {
+        "hora": "20:00",
+        "encuentro": "Corea del Sur vs República Checa",
+        "marcador": "2-1",
+        "resultado": "Corea del Sur"
+      }
+    ]
+  },
+  "2026-06-12": {
+    "Resultado Real": [
+      {
+        "hora": "13:00",
+        "encuentro": "Canada vs Bosnia-Herzegovina",
+        "marcador": "1-1",
+        "resultado": "Empate"
+      },
+      {
+        "hora": "19:00",
+        "encuentro": "United States vs Paraguay",
+        "marcador": "4-1",
+        "resultado": "United States"
+      }
+    ]
+  },
+  "2026-06-13": {
+    "Resultado Real": [
+      {
+        "hora": "13:00",
+        "encuentro": "Qatar vs Switzerland",
+        "marcador": "1-1",
+        "resultado": "Empate"
+      },
+      {
+        "hora": "16:00",
+        "encuentro": "Brasil vs Morocco",
+        "marcador": "1-1",
+        "resultado": "Empate"
+      },
+      {
+        "hora": "19:00",
+        "encuentro": "Haiti vs Scotland",
+        "marcador": "0-1",
+        "resultado": "Scotland"
+      },
+      {
+        "hora": "22:00",
+        "encuentro": "Australia vs Turkey",
+        "marcador": "2-0",
+        "resultado": "Australia"
+      }
+    ]
+  },
+  "2026-06-14": {
+    "Resultado Real": [
+      {
+        "hora": "11:00",
+        "encuentro": "Alemania vs Curaçao",
+        "marcador": "7-1",
+        "resultado": "Alemania"
+      },
+      {
+        "hora": "14:00",
+        "encuentro": "Netherlands vs Japan",
+        "marcador": "2-2",
+        "resultado": "Empate"
+      },
+      {
+        "hora": "17:00",
+        "encuentro": "Ivory Coast vs Ecuador",
+        "marcador": "1-0",
+        "resultado": "Ivory Coast"
+      },
+      {
+        "hora": "20:00",
+        "encuentro": "Sweden vs Tunisia",
+        "marcador": "5-1",
+        "resultado": "Sweden"
+      }
+    ]
+  },
+  "2026-06-15": {
+    "Resultado Real": [
+      {
+        "hora": "10:00",
+        "encuentro": "España vs Cape Verde Islands",
+        "marcador": "0-0",
+        "resultado": "Empate"
+      },
+      {
+        "hora": "13:00",
+        "encuentro": "Belgium vs Egypt",
+        "marcador": "1-1",
+        "resultado": "Empate"
+      },
+      {
+        "hora": "16:00",
+        "encuentro": "Saudi Arabia vs Uruguay",
+        "marcador": "1-1",
+        "resultado": "Empate"
+      },
+      {
+        "hora": "19:00",
+        "encuentro": "Iran vs New Zealand",
+        "marcador": "2-2",
+        "resultado": "Empate"
+      }
+    ]
+  },
+  "2026-06-16": {
+    "Resultado Real": [
+      {
+        "hora": "13:00",
+        "encuentro": "Francia vs Senegal",
+        "marcador": "3-1",
+        "resultado": "Francia"
+      },
+      {
+        "hora": "16:00",
+        "encuentro": "Iraq vs Norway",
+        "marcador": "1-4",
+        "resultado": "Norway"
+      },
+      {
+        "hora": "19:00",
+        "encuentro": "Argentina vs Algeria",
+        "marcador": "3-0",
+        "resultado": "Argentina"
+      },
+      {
+        "hora": "22:00",
+        "encuentro": "Austria vs Jordan",
+        "marcador": "3-1",
+        "resultado": "Austria"
+      }
+    ]
+  },
+  "2026-06-17": {
+    "Resultado Real": [
+      {
+        "hora": "11:00",
+        "encuentro": "Portugal vs Congo DR",
+        "marcador": "1-1",
+        "resultado": "Empate"
+      },
+      {
+        "hora": "14:00",
+        "encuentro": "Inglaterra vs Croacia",
+        "marcador": "4-2",
+        "resultado": "Inglaterra"
+      },
+      {
+        "hora": "17:00",
+        "encuentro": "Ghana vs Panama",
+        "marcador": "1-0",
+        "resultado": "Ghana"
+      },
+      {
+        "hora": "20:00",
+        "encuentro": "Uzbekistan vs Colombia",
+        "marcador": "1-3",
+        "resultado": "Colombia"
+      }
+    ]
+  },
+  "2026-06-18": {
+    "Resultado Real": [
+      {
+        "hora": "10:00",
+        "encuentro": "República Checa vs Sudáfrica",
+        "marcador": "1-1",
+        "resultado": "Empate"
+      }
+    ]
+  }
 }
