@@ -140,3 +140,260 @@
             border-radius: 8px;
             background-color: #1f2937;
         }
+
+        /* TABLA MODO EXCEL */
+        .tabla-oscura-custom {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto; 
+        }
+        .tabla-oscura-custom th, .tabla-oscura-custom td {
+            padding: 10px 8px; 
+            text-align: left;
+            box-sizing: border-box;
+        }
+        
+        .col-autoajuste {
+            white-space: nowrap; 
+            width: 1%; 
+        }
+
+        /* Ajustar texto de Excel para los Participantes */
+        .col-ajustar-texto {
+            white-space: normal !important; 
+            word-wrap: break-word;
+            max-width: 70px; 
+        }
+
+        .tabla-oscura-custom th {
+            background-color: #2563eb;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tabla-oscura-custom td {
+            border-bottom: 1px solid #374151;
+        }
+        .text-marcador {
+            color: #ffd700;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .text-resultado {
+            color: #10b981;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .text-participante {
+            font-weight: bold;
+            background-color: #161f30;
+        }
+        .icono-reloj {
+            color: #ffffff;
+            margin-right: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .tabs-container {
+                gap: 4px;
+            }
+            .tab-button {
+                padding: 8px 4px;
+                font-size: 0.85em;
+                flex: 1;
+                justify-content: center;
+            }
+            .tabla-oscura-custom th, .tabla-oscura-custom td {
+                padding: 6px 5px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-banner">
+        <h1><i class="fa-solid fa-trophy"></i> Quinielas Mundial 2026</h1>
+        <p id="subtitulo-vista">Predicciones del Día</p>
+    </div>
+
+    <div class="control-panel">
+        <div class="control-group">
+            <label><i class="fa-solid fa-calendar-days"></i></label>
+            <input type="date" id="selector-fecha" value="2026-06-18">
+        </div>
+        <div class="control-group">
+            <label><i class="fa-solid fa-text-height"></i></label>
+            <div class="mini-font-control">
+                <button onclick="cambiarLetra(-1)">-</button>
+                <span id="indicador-letra">9</span>
+                <button onclick="cambiarLetra(1)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <button class="tab-button active" id="tab-predicciones" onclick="cambiarPestaña('predicciones')">
+            <i class="fa-solid fa-users"></i> Predicciones
+        </button>
+        <button class="tab-button" id="tab-oficial" onclick="cambiarPestaña('oficial')">
+            <i class="fa-solid fa-earth-americas"></i> Oficiales (FIFA)
+        </button>
+    </div>
+
+    <div class="table-responsive">
+        <table class="tabla-oscura-custom" id="tabla-quinielas">
+            <thead>
+                <tr>
+                    <th class="col-ajustar-texto">Participante</th>
+                    <th class="col-autoajuste">Hora</th>
+                    <th>Encuentro</th> 
+                    <th class="col-autoajuste">Marcador</th>
+                    <th class="col-autoajuste">Resultado</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo-tabla">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    let fontSizeActual = 9; 
+    let pestañaActual = 'predicciones';
+
+    document.getElementById('selector-fecha').addEventListener('change', cargarDatosSegunVista);
+
+    function cambiarPestaña(tipo) {
+        pestañaActual = tipo;
+        
+        document.getElementById('tab-predicciones').classList.remove('active');
+        document.getElementById('tab-oficial').classList.remove('active');
+        
+        if (tipo === 'predicciones') {
+            document.getElementById('tab-predicciones').classList.add('active');
+            document.getElementById('subtitulo-vista').innerText = "Predicciones del Día";
+        } else {
+            document.getElementById('tab-oficial').classList.add('active');
+            document.getElementById('subtitulo-vista').innerText = "Resultados Reales Oficiales";
+        }
+        
+        cargarDatosSegunVista();
+    }
+
+    function obtenerFechaHoy() {
+        const hoy = new Date();
+        const yyyy = hoy.getFullYear();
+        let mm = hoy.getMonth() + 1; 
+        let dd = hoy.getDate();
+
+        if (mm < 10) mm = '0' + mm;
+        if (dd < 10) dd = '0' + dd;
+
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function cargarDatosSegunVista() {
+        const fechaSeleccionada = document.getElementById('selector-fecha').value;
+        const fechaHoy = obtenerFechaHoy();
+
+        if (pestañaActual === 'oficial' && fechaSeleccionada === fechaHoy) {
+            const tbody = document.getElementById('cuerpo-tabla');
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ffd700; font-weight: bold; padding: 30px; font-size: ${fontSizeActual}px;"><i class="fa-solid fa-hourglass-half"></i> Resultados pendientes</td></tr>`;
+            ajustarEstilosFuentes(); // Aplicar fuente al mensaje temporal
+            return;
+        }
+
+        const urlEndpoint = pestañaActual === 'predicciones' ? '/obtener_datos' : '/obtener_datos_oficiales';
+        
+        fetch(urlEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fecha: fechaSeleccionada })
+        })
+        .then(res => res.json())
+        .then(data => {
+            renderizarTabla(data.datos || {});
+        })
+        .catch(err => {
+            console.error("Error al cargar datos:", err);
+            document.getElementById('cuerpo-tabla').innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ef4444; padding: 20px;">Error al obtener información del servidor.</td></tr>`;
+            ajustarEstilosFuentes();
+        });
+    }
+
+    function renderizarTabla(datos) {
+        const tbody = document.getElementById('cuerpo-tabla');
+        tbody.innerHTML = '';
+
+        const llavesParticipantes = Object.keys(datos);
+
+        if (llavesParticipantes.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #9ca3af; padding: 30px; font-size: ${fontSizeActual}px;">No hay información registrada para esta fecha.</td></tr>`;
+            ajustarEstilosFuentes();
+            return;
+        }
+
+        llavesParticipantes.forEach(participante => {
+            let partidos = datos[participante];
+            
+            partidos.sort((a, b) => {
+                let horaA = a.hora ? a.hora.trim() : "23:59";
+                let horaB = b.hora ? b.hora.trim() : "23:59";
+                return horaA.localeCompare(horaB);
+            });
+            
+            partidos.forEach((partido, index) => {
+                const tr = document.createElement('tr');
+                tr.style.fontSize = `${fontSizeActual}px`;
+
+                let tdParticipante = '';
+                if (index === 0) {
+                    tdParticipante = `<td class="text-participante col-ajustar-texto" rowspan="${partidos.length}">${participante}</td>`;
+                }
+
+                let horaMostrar = partido.hora ? partido.hora : `<span style="color:#6b7280; font-size:0.9em;">N/A</span>`;
+
+                tr.innerHTML = `
+                    ${tdParticipante}
+                    <td class="col-autoajuste"><i class="fa-regular fa-clock icono-reloj"></i> ${horaMostrar}</td>
+                    <td style="font-weight: 600;">${partido.encuentro}</td>
+                    <td class="text-marcador col-autoajuste">${partido.marcador}</td>
+                    <td class="text-resultado col-autoajuste">${partido.resultado}</td>
+                `;
+                
+                tbody.appendChild(tr);
+            });
+        });
+        
+        ajustarEstilosFuentes();
+    }
+
+    function cambiarLetra(factor) {
+        fontSizeActual += factor;
+        if (fontSizeActual < 6) fontSizeActual = 6;
+        if (fontSizeActual > 24) fontSizeActual = 24;
+        
+        document.getElementById('indicador-letra').innerText = fontSizeActual;
+        ajustarEstilosFuentes();
+    }
+
+    // CORRECCIÓN PROTEGIDA: Verifica si hay elementos antes de recorrerlos para evitar crasheos de JS
+    function ajustarEstilosFuentes() {
+        const elementos = document.querySelectorAll('#cuerpo-tabla tr, #cuerpo-tabla td, .tabla-oscura-custom th');
+        if (elementos && elementos.length > 0) {
+            elementos.forEach(el => {
+                el.style.setProperty('font-size', `${fontSizeActual}px`, 'important');
+            });
+        }
+    }
+
+    window.onload = () => {
+        // Ejecutamos primero la carga para crear el HTML de las tablas y luego inicializamos la fuente
+        cargarDatosSegunVista();
+    };
+</script>
+
+</body>
+</html>
