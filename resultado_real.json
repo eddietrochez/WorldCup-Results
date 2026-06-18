@@ -25,9 +25,9 @@
             },
             {
                 "hora": "19:00",
-                "encuentro": "United States vs Paraguay",
+                "encuentro": "Estados Unidos vs Paraguay",
                 "marcador": "4-1",
-                "resultado": "United States"
+                "resultado": "Estados Unidos"
             }
         ]
     },
@@ -35,25 +35,25 @@
         "Resultado Real": [
             {
                 "hora": "13:00",
-                "encuentro": "Qatar vs Switzerland",
+                "encuentro": "Catar vs Suiza",
                 "marcador": "1-1",
                 "resultado": "Empate"
             },
             {
                 "hora": "16:00",
-                "encuentro": "Brasil vs Morocco",
+                "encuentro": "Brasil vs Marruecos",
                 "marcador": "1-1",
                 "resultado": "Empate"
             },
             {
                 "hora": "19:00",
-                "encuentro": "Haiti vs Scotland",
+                "encuentro": "Haití vs Escocia",
                 "marcador": "0-1",
                 "resultado": "Scotland"
             },
             {
                 "hora": "22:00",
-                "encuentro": "Australia vs Turkey",
+                "encuentro": "Australia vs Turquía",
                 "marcador": "2-0",
                 "resultado": "Australia"
             }
@@ -63,27 +63,27 @@
         "Resultado Real": [
             {
                 "hora": "11:00",
-                "encuentro": "Alemania vs Curaçao",
+                "encuentro": "Alemania vs Curazao",
                 "marcador": "7-1",
                 "resultado": "Alemania"
             },
             {
                 "hora": "14:00",
-                "encuentro": "Netherlands vs Japan",
+                "encuentro": "Países Bajos vs Japón",
                 "marcador": "2-2",
                 "resultado": "Empate"
             },
             {
                 "hora": "17:00",
-                "encuentro": "Ivory Coast vs Ecuador",
+                "encuentro": "Costa de Marfil vs Ecuador",
                 "marcador": "1-0",
-                "resultado": "Ivory Coast"
+                "resultado": "Costa de Marfil"
             },
             {
                 "hora": "20:00",
-                "encuentro": "Sweden vs Tunisia",
+                "encuentro": "Suecia vs Túnez",
                 "marcador": "5-1",
-                "resultado": "Sweden"
+                "resultado": "Suecia"
             }
         ]
     },
@@ -91,25 +91,25 @@
         "Resultado Real": [
             {
                 "hora": "10:00",
-                "encuentro": "España vs Cape Verde Islands",
+                "encuentro": "España vs Cabo Verde",
                 "marcador": "0-0",
                 "resultado": "Empate"
             },
             {
                 "hora": "13:00",
-                "encuentro": "Belgium vs Egypt",
+                "encuentro": "Bélgica vs Egipto",
                 "marcador": "1-1",
                 "resultado": "Empate"
             },
             {
                 "hora": "16:00",
-                "encuentro": "Saudi Arabia vs Uruguay",
+                "encuentro": "Arabia Saudita vs Uruguay",
                 "marcador": "1-1",
                 "resultado": "Empate"
             },
             {
                 "hora": "19:00",
-                "encuentro": "Iran vs New Zealand",
+                "encuentro": "Irán vs Nueva Zelanda",
                 "marcador": "2-2",
                 "resultado": "Empate"
             }
@@ -125,19 +125,19 @@
             },
             {
                 "hora": "16:00",
-                "encuentro": "Iraq vs Norway",
+                "encuentro": "Irak vs Noruega",
                 "marcador": "1-4",
-                "resultado": "Norway"
+                "resultado": "Noruega"
             },
             {
                 "hora": "19:00",
-                "encuentro": "Argentina vs Algeria",
+                "encuentro": "Argentina vs Argelia",
                 "marcador": "3-0",
                 "resultado": "Argentina"
             },
             {
                 "hora": "22:00",
-                "encuentro": "Austria vs Jordan",
+                "encuentro": "Austria vs Jordania",
                 "marcador": "3-1",
                 "resultado": "Austria"
             }
@@ -147,7 +147,7 @@
         "Resultado Real": [
             {
                 "hora": "11:00",
-                "encuentro": "Portugal vs Congo DR",
+                "encuentro": "Portugal vs RD Congo",
                 "marcador": "1-1",
                 "resultado": "Empate"
             },
@@ -159,15 +159,25 @@
             },
             {
                 "hora": "17:00",
-                "encuentro": "Ghana vs Panama",
+                "encuentro": "Ghana vs Panamá",
                 "marcador": "1-0",
                 "resultado": "Ghana"
             },
             {
                 "hora": "20:00",
-                "encuentro": "Uzbekistan vs Colombia",
+                "encuentro": "Uzbekistán vs Colombia",
                 "marcador": "1-3",
                 "resultado": "Colombia"
+            }
+        ]
+    },
+   "2026-06-18": {
+        "Resultado Real": [
+            {
+                "hora": "10:00",
+                "encuentro": "República Checa vs Sudáfrica",
+                "marcador": "1-1",
+                "resultado": "Empate"
             }
         ]
     }
