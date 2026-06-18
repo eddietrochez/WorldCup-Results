@@ -26,7 +26,7 @@
             box-sizing: border-box;
         }
         
-        /* BANNER SUPERIOR CON TÍTULO MÁS GRANDE */
+        /* BANNER SUPERIOR */
         .header-banner {
             background-color: #2563eb;
             border-radius: 8px;
@@ -36,64 +36,72 @@
         }
         .header-banner h1 {
             margin: 0;
-            font-size: 1.9em; /* Título recuperado (Más grande y vistoso) */
+            font-size: 1.9em; 
         }
         .header-banner p {
             margin: 3px 0 0 0;
             font-size: 0.95em;
         }
 
-        /* PANEL DE CONTROL COMPACTO */
+        /* PANEL DE CONTROL REDISEÑADO (Ultra compacto y discreto) */
         .control-panel {
             background-color: #111827;
             border-radius: 8px;
-            padding: 10px 15px;
+            padding: 8px 12px;
             margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
         .control-group {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
         .control-group label {
-            margin-bottom: 3px;
             font-weight: bold;
-            font-size: 0.85em;
+            font-size: 0.8em;
+            color: #9ca3af;
         }
         .control-group input[type="date"] {
             background-color: #1f2937;
             color: white;
             border: 1px solid #4b5563;
-            padding: 6px 10px;
+            padding: 4px 8px;
             border-radius: 4px;
-            font-size: 0.9em;
+            font-size: 0.85em;
         }
-        .btn-group {
+        
+        /* Mini control de fuente estilo accesorio */
+        .mini-font-control {
             display: flex;
             align-items: center;
+            background-color: #1f2937;
             border: 1px solid #4b5563;
             border-radius: 4px;
             overflow: hidden;
         }
-        .btn-group button {
-            background-color: #1f2937;
-            color: white;
+        .mini-font-control button {
+            background: none;
+            color: #9ca3af;
             border: none;
-            padding: 6px 12px;
-            font-size: 1em;
+            padding: 4px 8px;
+            font-size: 0.85em;
             cursor: pointer;
-        }
-        .btn-group button:hover {
-            background-color: #374151;
-        }
-        .btn-group span {
-            background-color: #111827;
-            padding: 6px 12px;
-            font-size: 0.95em;
             font-weight: bold;
+        }
+        .mini-font-control button:hover {
+            background-color: #374151;
+            color: white;
+        }
+        .mini-font-control span {
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+            padding: 0 4px;
+            min-width: 14px;
+            text-align: center;
         }
 
         /* PESTAÑAS ESTILO COMPACTO */
@@ -133,7 +141,7 @@
             background-color: #1f2937;
         }
 
-        /* TABLA CON EFECTO AUTOAJUSTAR COMPACTO (Estilo Excel) */
+        /* TABLA MODO EXCEL */
         .tabla-oscura-custom {
             width: 100%;
             border-collapse: collapse;
@@ -150,7 +158,6 @@
             width: 1%; 
         }
 
-        /* CORRECCIÓN: Encabezados de la tabla reducidos estrictamente a 9px */
         .tabla-oscura-custom th {
             background-color: #2563eb;
             color: white;
@@ -182,19 +189,7 @@
             margin-right: 3px;
         }
 
-        /* MEDIA QUERIES PARA CONTROL DE COMPACTACIÓN EN CELULARES */
         @media (max-width: 768px) {
-            .control-panel {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 10px;
-                gap: 8px;
-            }
-            .btn-group button, .btn-group span {
-                flex: 1;
-                text-align: center;
-                padding: 5px;
-            }
             .tabs-container {
                 gap: 4px;
             }
@@ -220,21 +215,22 @@
 
     <div class="control-panel">
         <div class="control-group">
-            <label>Seleccionar Fecha</label>
+            <label><i class="fa-solid fa-calendar-days"></i></label>
             <input type="date" id="selector-fecha" value="2026-06-18">
         </div>
         <div class="control-group">
-            <label>Tamaño Letra</label>
-            <div class="btn-group">
+            <label><i class="fa-solid fa-text-height"></i></label>
+            <div class="mini-font-control">
                 <button onclick="cambiarLetra(-1)">-</button>
-                <span id="indicador-letra">9</span> <button onclick="cambiarLetra(1)">+</button>
+                <span id="indicador-letra">9</span>
+                <button onclick="cambiarLetra(1)">+</button>
             </div>
         </div>
     </div>
 
     <div class="tabs-container">
-        <button class="tab-button active" id="tab-amigos" onclick="cambiarPestaña('amigos')">
-            <i class="fa-solid fa-users"></i> Amigos
+        <button class="tab-button active" id="tab-predicciones" onclick="cambiarPestaña('predicciones')">
+            <i class="fa-solid fa-users"></i> Predicciones
         </button>
         <button class="tab-button" id="tab-oficial" onclick="cambiarPestaña('oficial')">
             <i class="fa-solid fa-earth-americas"></i> Oficiales (FIFA)
@@ -259,20 +255,19 @@
 </div>
 
 <script>
-    // Inicialización del tamaño de letra del contenido a 9px
     let fontSizeActual = 9; 
-    let pestañaActual = 'amigos';
+    let pestañaActual = 'predicciones';
 
     document.getElementById('selector-fecha').addEventListener('change', cargarDatosSegunVista);
 
     function cambiarPestaña(tipo) {
         pestañaActual = tipo;
         
-        document.getElementById('tab-amigos').classList.remove('active');
+        document.getElementById('tab-predicciones').classList.remove('active');
         document.getElementById('tab-oficial').classList.remove('active');
         
-        if (tipo === 'amigos') {
-            document.getElementById('tab-amigos').classList.add('active');
+        if (tipo === 'predicciones') {
+            document.getElementById('tab-predicciones').classList.add('active');
             document.getElementById('subtitulo-vista').innerText = "Predicciones del Día";
         } else {
             document.getElementById('tab-oficial').classList.add('active');
@@ -304,7 +299,7 @@
             return;
         }
 
-        const urlEndpoint = pestañaActual === 'amigos' ? '/obtener_datos' : '/obtener_datos_oficiales';
+        const urlEndpoint = pestañaActual === 'predicciones' ? '/obtener_datos' : '/obtener_datos_oficiales';
         
         fetch(urlEndpoint, {
             method: 'POST',
@@ -333,7 +328,14 @@
         }
 
         llavesParticipantes.forEach(participante => {
-            const partidos = datos[participante];
+            let partidos = datos[participante];
+            
+            # FILTRO DE ORDENACIÓN CRONOLÓGICA (Estilo Excel por Hora)
+            partidos.sort((a, b) => {
+                let horaA = a.hora || "23:59";
+                let horaB = b.hora || "23:59";
+                return horaA.localeCompare(horaB);
+            });
             
             partidos.forEach((partido, index) => {
                 const tr = document.createElement('tr');
