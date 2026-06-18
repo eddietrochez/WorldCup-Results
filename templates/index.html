@@ -2,192 +2,324 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quinielas Mundial 2026</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ESTILOS CORREGIDOS PARA ALINEAR "ON TOP" */
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
-            color: #e2e8f0;
+            background-color: #0b1325;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: flex-start; /* Cambiado de center a flex-start para ir arriba */
+            align-items: center;
+            flex-direction: column;
             min-height: 100vh;
+            margin: 0;
+            padding-top: 20px; /* Espaciado superior estético */
         }
-        .header {
-            background: linear-gradient(90deg, #1e40af, #3b82f6);
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background-color: #0b1325;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .header-banner {
+            background-color: #2563eb;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-banner h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header-banner p {
+            margin: 5px 0 0 0;
+            font-size: 1.2em;
+        }
+        .control-panel {
+            background-color: #111827;
             border-radius: 12px;
-            padding: 1rem;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .table {
-            background: rgba(15, 23, 42, 0.95);
+        .control-group {
+            display: flex;
+            flex-direction: column;
         }
-        th { 
-            background: #1e40af !important;
-            position: sticky;
-            top: 0;
-        }
-        .participante-cell {
+        .control-group label {
+            margin-bottom: 5px;
             font-weight: bold;
-            color: #60a5fa;
-            background: rgba(30, 64, 175, 0.25);
         }
-        .hora-cell {
-            color: #60a5fa;
-            font-weight: 500;
-            white-space: nowrap;
+        .control-group input[type="date"] {
+            background-color: #1f2937;
+            color: white;
+            border: 1px solid #4b5563;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1em;
         }
-        /* Ajustes para compactar el segundo bloque (filtros) */
-        .card-filtros {
-            padding: 0.75rem !important;
+        .btn-group {
+            display: flex;
+            align-items: center;
+            border: 1px solid #4b5563;
+            border-radius: 5px;
+            overflow: hidden;
         }
-        .card-filtros label {
-            font-size: 0.85rem; /* Un grado menor en las etiquetas */
-            margin-bottom: 0.25rem;
+        .btn-group button {
+            background-color: #1f2937;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1.2em;
+            cursor: pointer;
         }
-        .card-filtros .form-control, 
-        .card-filtros .btn {
-            font-size: 0.9rem; /* Inputs y botones un grado más pequeños */
-            padding: 0.375rem 0.5rem;
+        .btn-group button:hover {
+            background-color: #374151;
         }
-        #fontSizeDisplay {
-            max-width: 45px;
+        .btn-group span {
+            background-color: #111827;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* DISEÑO DE PESTAÑAS */
+        .tabs-container {
+            display: flex;
+            border-bottom: 2px solid #374151;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-button:hover {
+            color: #ffffff;
+        }
+        .tab-button.active {
+            color: #2563eb;
+            border-bottom: 3px solid #2563eb;
+            margin-bottom: -2px;
+        }
+
+        /* TABLA ORIGINAL INTACTA */
+        .tabla-oscura-custom {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1f2937;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .tabla-oscura-custom th, .tabla-oscura-custom td {
+            padding: 15px;
+            text-align: left;
+        }
+        .tabla-oscura-custom th {
+            background-color: #2563eb;
+            color: white;
+            font-size: 1.1em;
+        }
+        .tabla-oscura-custom td {
+            border-bottom: 1px solid #374151;
+            font-size: 1em;
+        }
+        .text-marcador {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .text-resultado {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .text-participante {
+            font-weight: bold;
+        }
+        .icono-reloj {
+            color: #ffffff;
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container py-3">
 
-        <div class="header text-center text-white mb-3">
-            <h3 class="mb-1"><i class="fas fa-trophy"></i> Quinielas Mundial 2026</h3>
-            <p class="mb-0 small">Predicciones del Día</p>
+<div class="container">
+    <div class="header-banner">
+        <h1><i class="fa-solid fa-trophy"></i> Quinielas Mundial 2026</h1>
+        <p id="subtitulo-vista">Predicciones del Día</p>
+    </div>
+
+    <div class="control-panel">
+        <div class="control-group">
+            <label>Seleccionar Fecha</label>
+            <input type="date" id="selector-fecha" value="2026-06-18">
         </div>
-
-        <div class="card card-filtros mb-3 bg-dark border-0">
-            <div class="row g-2 align-items-end">
-                <div class="col-7">
-                    <label class="form-label fw-bold text-light">Seleccionar Fecha</label>
-                    <input type="date" id="fecha" class="form-control">
-                </div>
-                <div class="col-5">
-                    <label class="form-label fw-bold text-light text-center d-block">Tamaño Letra</label>
-                    <div class="d-flex justify-content-center">
-                        <div class="input-group justify-content-center">
-                            <button onclick="cambiarFuente(-1)" class="btn btn-outline-light">-</button>
-                            <span id="fontSizeDisplay" class="form-control text-center bg-dark text-white">11</span>
-                            <button onclick="cambiarFuente(1)" class="btn btn-outline-light">+</button>
-                        </div>
-                    </div>
-                </div>
+        <div class="control-group" style="align-items: flex-end;">
+            <label>Tamaño Letra</label>
+            <div class="btn-group">
+                <button onclick="cambiarLetra(-1)">-</button>
+                <span id="indicador-letra">14</span>
+                <button onclick="cambiarLetra(1)">+</button>
             </div>
-        </div>
-
-        <div class="card p-2 bg-dark border-0">
-            <div id="loading" class="text-center py-4">
-                <div class="spinner-border text-primary" role="status"></div>
-                <p class="mt-3 small">Cargando predicciones...</p>
-            </div>
-            <div id="tablaContainer"></div>
-        </div>
-
-        <div class="text-center mt-3 text-muted small">
-            Participantes: <span id="totalParticipantes">0</span>
         </div>
     </div>
 
-    <script>
-        // Cambiado a un valor predeterminado inicial de 11 según lo solicitado
-        let currentFontSize = 9;
+    <div class="tabs-container">
+        <button class="tab-button active" id="tab-amigos" onclick="cambiarPestaña('amigos')">
+            <i class="fa-solid fa-users"></i> Predicciones de Amigos
+        </button>
+        <button class="tab-button" id="tab-oficial" onclick="cambiarPestaña('oficial')">
+            <i class="fa-solid fa-earth-americas"></i> Marcadores Oficiales (FIFA)
+        </button>
+    </div>
 
-        async function cargarDatos() {
-            const fecha = document.getElementById('fecha').value;
-            const loading = document.getElementById('loading');
-            const container = document.getElementById('tablaContainer');
+    <table class="tabla-oscura-custom" id="tabla-quinielas">
+        <thead>
+            <tr>
+                <th style="width: 20%;">Participante</th>
+                <th style="width: 15%;">Hora</th>
+                <th style="width: 35%;">Encuentro</th>
+                <th style="width: 15%;">Marcador</th>
+                <th style="width: 15%;">Resultado</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpo-tabla">
+        </tbody>
+    </table>
+</div>
 
-            loading.style.display = 'block';
-            container.innerHTML = '';
+<script>
+    let fontSizeActual = 14; 
+    let pestañaActual = 'amigos';
 
-            try {
-                const response = await fetch('/obtener_datos', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ fecha })
-                });
+    document.getElementById('selector-fecha').addEventListener('change', cargarDatosSegunVista);
 
-                const result = await response.json();
-                const datos = result.datos || {};
-
-                document.getElementById('totalParticipantes').textContent = Object.keys(datos).length;
-                renderTabla(datos);
-
-            } catch (err) {
-                container.innerHTML = `<div class="no-data text-danger">Error al cargar los datos</div>`;
-            } finally {
-                loading.style.display = 'none';
-            }
-        }
-
-        function renderTabla(datos) {
-            const container = document.getElementById('tablaContainer');
-            if (Object.keys(datos).length === 0) {
-                container.innerHTML = `<div class="no-data text-center py-3">No hay predicciones para esta fecha</div>`;
-                return;
-            }
-
-            let html = `
-                <div class="table-responsive">
-                    <table class="table table-dark table-hover align-middle" id="mainTable">
-                        <thead>
-                            <tr>
-                                <th>Participante</th>
-                                <th>Hora</th>
-                                <th>Encuentro</th>
-                                <th>Marcador</th>
-                                <th>Resultado</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
-
-            Object.keys(datos).sort().forEach(participante => {
-                const partidos = datos[participante];
-                partidos.forEach((p, index) => {
-                    html += `<tr>`;
-                    if (index === 0) {
-                        html += `<td rowspan="${partidos.length}" class="participante-cell">${participante}</td>`;
-                    }
-                    html += `
-                        <td class="hora-cell"><i class="far fa-clock"></i> ${p.hora}</td>
-                        <td>${p.encuentro}</td>
-                        <td class="text-warning fw-bold">${p.marcador}</td>
-                        <td>${p.resultado}</td>
-                    </tr>`;
-                });
-            });
-
-            html += `</tbody></table></div>`;
-            container.innerHTML = html;
-            aplicarFuente();
-        }
-
-        function cambiarFuente(delta) {
-            // Admite reducir el tamaño hasta un mínimo de 8
-            currentFontSize = Math.max(8, Math.min(20, currentFontSize + delta));
-            document.getElementById('fontSizeDisplay').textContent = currentFontSize;
-            aplicarFuente();
-        }
-
-        function aplicarFuente() {
-            const table = document.getElementById('mainTable');
-            if (table) {
-                table.style.fontSize = currentFontSize + 'px';
-            }
-        }
-
-        document.getElementById('fecha').addEventListener('change', cargarDatos);
+    function cambiarPestaña(tipo) {
+        pestañaActual = tipo;
         
-        window.onload = () => {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('fecha').value = today;
-            cargarDatos();
-        };
-    </script>
+        document.getElementById('tab-amigos').classList.remove('active');
+        document.getElementById('tab-oficial').classList.remove('active');
+        
+        if (tipo === 'amigos') {
+            document.getElementById('tab-amigos').classList.add('active');
+            document.getElementById('subtitulo-vista').innerText = "Predicciones del Día";
+        } else {
+            document.getElementById('tab-oficial').classList.add('active');
+            document.getElementById('subtitulo-vista').innerText = "Resultados Reales Oficiales";
+        }
+        
+        cargarDatosSegunVista();
+    }
+
+    function obtenerFechaHoy() {
+        const hoy = new Date();
+        const yyyy = hoy.getFullYear();
+        let mm = hoy.getMonth() + 1; 
+        let dd = hoy.getDate();
+
+        if (mm < 10) mm = '0' + mm;
+        if (dd < 10) dd = '0' + dd;
+
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function cargarDatosSegunVista() {
+        const fechaSeleccionada = document.getElementById('selector-fecha').value;
+        const fechaHoy = obtenerFechaHoy();
+
+        if (pestañaActual === 'oficial' && fechaSeleccionada === fechaHoy) {
+            const tbody = document.getElementById('cuerpo-tabla');
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ffd700; font-weight: bold; padding: 30px; font-size: ${fontSizeActual}px;"><i class="fa-solid fa-hourglass-half"></i> Resultados pendientes</td></tr>`;
+            return;
+        }
+
+        const urlEndpoint = pestañaActual === 'amigos' ? '/obtener_datos' : '/obtener_datos_oficiales';
+        
+        fetch(urlEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fecha: fechaSeleccionada })
+        })
+        .then(res => res.json())
+        .then(data => {
+            renderizarTabla(data.datos || {});
+        })
+        .catch(err => {
+            console.error("Error al cargar datos:", err);
+            document.getElementById('cuerpo-tabla').innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ef4444; padding: 20px;">Error al obtener información del servidor.</td></tr>`;
+        });
+    }
+
+    function renderizarTabla(datos) {
+        const tbody = document.getElementById('cuerpo-tabla');
+        tbody.innerHTML = '';
+
+        const llavesParticipantes = Object.keys(datos);
+
+        if (llavesParticipantes.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #9ca3af; padding: 30px; font-size: ${fontSizeActual}px;">No hay información registrada para esta fecha.</td></tr>`;
+            return;
+        }
+
+        llavesParticipantes.forEach(participante => {
+            const partidos = datos[participante];
+            
+            partidos.forEach((partido, index) => {
+                const tr = document.createElement('tr');
+                tr.style.fontSize = `${fontSizeActual}px`;
+
+                let tdParticipante = '';
+                if (index === 0) {
+                    tdParticipante = `<td class="text-participante" rowspan="${partidos.length}">${participante}</td>`;
+                }
+
+                // FIX HORA: Si no viene la hora, mostramos un guión limpio o texto descriptivo en lugar de 00:00 duro
+                let horaMostrar = partido.hora ? partido.hora : `<span style="color:#6b7280; font-size:0.9em;">N/A</span>`;
+
+                tr.innerHTML = `
+                    ${tdParticipante}
+                    <td><i class="fa-regular fa-clock icono-reloj"></i> ${horaMostrar}</td>
+                    <td style="font-weight: 600;">${partido.encuentro}</td>
+                    <td class="text-marcador">${partido.marcador}</td>
+                    <td class="text-resultado">${partido.resultado}</td>
+                `;
+                
+                tbody.appendChild(tr);
+            });
+        });
+    }
+
+    function cambiarLetra(factor) {
+        fontSizeActual += factor;
+        if (fontSizeActual < 8) fontSizeActual = 8;
+        if (fontSizeActual > 24) fontSizeActual = 24;
+        
+        document.getElementById('indicador-letra').innerText = fontSizeActual;
+        
+        const elementos = document.querySelectorAll('#cuerpo-tabla tr, #cuerpo-tabla td');
+        elementos.forEach(el => el.style.fontSize = `${fontSizeActual}px`);
+    }
+
+    window.onload = () => {
+        cargarDatosSegunVista();
+    };
+</script>
+
 </body>
 </html>
