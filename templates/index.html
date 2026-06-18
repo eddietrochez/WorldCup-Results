@@ -6,49 +6,50 @@
     <title>Quinielas Mundial 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ESTILOS ORIGINALES DE TU APLICACIÓN EN RENDER */
         body {
             background-color: #0b1325;
             color: #ffffff;
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; 
             align-items: center;
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
+            padding-top: 20px; 
         }
         .container {
-            width: 95%;
+            width: 95%; /* Aumentado ligeramente para aprovechar mejor el espacio lateral */
             max-width: 1200px;
             background-color: #0b1325;
-            padding: 10px;
+            padding: 20px;
             border-radius: 10px;
+            box-sizing: border-box;
         }
         .header-banner {
             background-color: #2563eb;
             border-radius: 15px;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .header-banner h1 {
             margin: 0;
-            font-size: 1.8em;
+            font-size: 2.5em;
         }
         .header-banner p {
             margin: 5px 0 0 0;
-            font-size: 1em;
+            font-size: 1.2em;
         }
         .control-panel {
             background-color: #111827;
             border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         .control-group {
             display: flex;
@@ -57,17 +58,14 @@
         .control-group label {
             margin-bottom: 5px;
             font-weight: bold;
-            font-size: 0.9em;
         }
         .control-group input[type="date"] {
             background-color: #1f2937;
             color: white;
             border: 1px solid #4b5563;
-            padding: 8px;
+            padding: 10px;
             border-radius: 5px;
-            font-size: 0.9em;
-            width: 100%;
-            box-sizing: border-box;
+            font-size: 1em;
         }
         .btn-group {
             display: flex;
@@ -80,8 +78,8 @@
             background-color: #1f2937;
             color: white;
             border: none;
-            padding: 8px 12px;
-            font-size: 1em;
+            padding: 10px 15px;
+            font-size: 1.2em;
             cursor: pointer;
         }
         .btn-group button:hover {
@@ -89,31 +87,29 @@
         }
         .btn-group span {
             background-color: #111827;
-            padding: 8px 15px;
-            font-size: 1em;
+            padding: 10px 20px;
+            font-size: 1.2em;
             font-weight: bold;
         }
 
-        /* DISEÑO DE PESTAÑAS RESPONSIVE */
+        /* DISEÑO DE PESTAÑAS */
         .tabs-container {
             display: flex;
             border-bottom: 2px solid #374151;
-            margin-bottom: 15px;
-            gap: 5px;
+            margin-bottom: 20px;
         }
         .tab-button {
             background: none;
             border: none;
             color: #9ca3af;
-            padding: 10px 12px;
-            font-size: 0.9em;
+            padding: 12px 24px;
+            font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 6px;
-            white-space: nowrap;
+            gap: 8px;
         }
         .tab-button:hover {
             color: #ffffff;
@@ -124,28 +120,34 @@
             margin-bottom: -2px;
         }
 
-        /* TABLA AJUSTADA PARA MÓVIL */
+        /* CONTENEDOR RESPONSIVO PARA LA TABLA */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+            border-radius: 10px;
+            background-color: #1f2937;
+        }
+
+        /* TABLA ORIGINAL INTACTA */
         .tabla-oscura-custom {
             width: 100%;
             border-collapse: collapse;
-            background-color: #1f2937;
-            border-radius: 10px;
-            overflow: hidden;
+            min-width: 600px; /* Evita que las columnas se compriman demasiado en móvil */
         }
         .tabla-oscura-custom th, .tabla-oscura-custom td {
-            padding: 10px 8px;
+            padding: 15px;
             text-align: left;
         }
         .tabla-oscura-custom th {
             background-color: #2563eb;
             color: white;
-            font-size: 0.95em;
+            font-size: 1.1em;
         }
         .tabla-oscura-custom td {
             border-bottom: 1px solid #374151;
+            font-size: 1em;
         }
-        
-        /* COLORES ORIGINALES FIJOS */
         .text-marcador {
             color: #ffd700;
             font-weight: bold;
@@ -159,15 +161,59 @@
         }
         .icono-reloj {
             color: #ffffff;
-            margin-right: 3px;
+            margin-right: 5px;
         }
 
-        /* MEDIA QUERIES PARA PANTALLAS CHICAS (MÓVIL) */
-        @media (max-width: 600px) {
-            .header-banner h1 { font-size: 1.4em; }
-            .control-panel { padding: 10px; }
-            .tab-button { padding: 8px 6px; font-size: 0.8em; gap: 4px; }
-            .tabla-oscura-custom th, .tabla-oscura-custom td { padding: 8px 5px; }
+        /* --- NUEVOS AJUSTES ESPECIALES PARA MÓVILES --- */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 10px;
+            }
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            .header-banner {
+                padding: 15px 10px;
+                margin-bottom: 15px;
+            }
+            .header-banner h1 {
+                font-size: 1.8em;
+            }
+            .header-banner p {
+                font-size: 1em;
+            }
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px;
+                gap: 15px;
+            }
+            .control-group style {
+                align-items: stretch;
+            }
+            .control-group input[type="date"] {
+                padding: 8px;
+            }
+            .btn-group button {
+                padding: 8px 12px;
+            }
+            .btn-group span {
+                padding: 8px 15px;
+            }
+            .tabs-container {
+                gap: 5px;
+            }
+            .tab-button {
+                padding: 10px 8px;
+                font-size: 0.9em;
+                flex: 1;
+                justify-content: center;
+                text-align: center;
+            }
+            .tabla-oscura-custom th, .tabla-oscura-custom td {
+                padding: 10px; /* Reducción de espaciados internos en celdas */
+            }
         }
     </style>
 </head>
@@ -175,102 +221,4 @@
 
 <div class="container">
     <div class="header-banner">
-        <h1><i class="fa-solid fa-trophy"></i> Quinielas Mundial 2026</h1>
-        <p id="subtitulo-vista">Predicciones del Día</p>
-    </div>
-
-    <div class="control-panel">
-        <div class="control-group" style="flex: 1;">
-            <label>Seleccionar Fecha</label>
-            <input type="date" id="selector-fecha" value="2026-06-18">
-        </div>
-        <div class="control-group" style="align-items: flex-end;">
-            <label>Tamaño Letra</label>
-            <div class="btn-group">
-                <button onclick="cambiarLetra(-1)">-</button>
-                <span id="indicador-letra">11</span>
-                <button onclick="cambiarLetra(1)">+</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="tabs-container">
-        <button class="tab-button active" id="tab-amigos" onclick="cambiarPestaña('amigos')">
-            <i class="fa-solid fa-users"></i> Amigos
-        </button>
-        <button class="tab-button" id="tab-oficial" onclick="cambiarPestaña('oficial')">
-            <i class="fa-solid fa-earth-americas"></i> Oficiales (FIFA)
-        </button>
-    </div>
-
-    <table class="tabla-oscura-custom" id="tabla-quinielas">
-        <thead>
-            <tr>
-                <th style="width: 22%;">Part.</th>
-                <th style="width: 15%;">Hora</th>
-                <th style="width: 33%;">Encuentro</th>
-                <th style="width: 15%;">Marc.</th>
-                <th style="width: 15%;">Res.</th>
-            </tr>
-        </thead>
-        <tbody id="cuerpo-tabla">
-            </tbody>
-    </table>
-</div>
-
-<script>
-    // CAMBIO DE DEFAULT: Iniciamos en 11px para que se adapte perfectamente al móvil
-    let fontSizeActual = 11; 
-    let pestañaActual = 'amigos';
-
-    document.getElementById('selector-fecha').addEventListener('change', cargarDatosSegunVista);
-
-    function cambiarPestaña(tipo) {
-        pestañaActual = tipo;
-        
-        document.getElementById('tab-amigos').classList.remove('active');
-        document.getElementById('tab-oficial').classList.remove('active');
-        
-        if (tipo === 'amigos') {
-            document.getElementById('tab-amigos').classList.add('active');
-            document.getElementById('subtitulo-vista').innerText = "Predicciones del Día";
-        } else {
-            document.getElementById('tab-oficial').classList.add('active');
-            document.getElementById('subtitulo-vista').innerText = "Resultados Reales Oficiales";
-        }
-        
-        cargarDatosSegunVista();
-    }
-
-    function obtenerFechaHoy() {
-        const hoy = new Date();
-        const yyyy = hoy.getFullYear();
-        let mm = hoy.getMonth() + 1; 
-        let dd = hoy.getDate();
-
-        if (mm < 10) mm = '0' + mm;
-        if (dd < 10) dd = '0' + dd;
-
-        return `${yyyy}-${mm}-${dd}`;
-    }
-
-    function cargarDatosSegunVista() {
-        const fechaSeleccionada = document.getElementById('selector-fecha').value;
-        const fechaHoy = obtenerFechaHoy();
-
-        if (pestañaActual === 'oficial' && fechaSeleccionada === fechaHoy) {
-            const tbody = document.getElementById('cuerpo-tabla');
-            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ffd700; font-weight: bold; padding: 20px; font-size: ${fontSizeActual}px;"><i class="fa-solid fa-hourglass-half"></i> Resultados pendientes</td></tr>`;
-            return;
-        }
-
-        const urlEndpoint = pestañaActual === 'amigos' ? '/obtener_datos' : '/obtener_datos_oficiales';
-        
-        fetch(urlEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ fecha: fechaSeleccionada })
-        })
-        .then(res => {
-            if (!res.ok) throw new Error("Error en la respuesta del servidor");
-            return res.json
+        <h1>
