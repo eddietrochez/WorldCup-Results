@@ -16,36 +16,39 @@
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
-            padding-top: 20px; 
+            padding-top: 10px; 
         }
         .container {
-            width: 90%;
+            width: 95%;
             max-width: 1200px;
             background-color: #0b1325;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 10px;
             box-sizing: border-box;
         }
+        
+        /* BANNER SUPERIOR MÁS COMPACTO */
         .header-banner {
             background-color: #2563eb;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 8px;
+            padding: 10px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
         .header-banner h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 1.4em; /* Reducido drásticamente */
         }
         .header-banner p {
-            margin: 5px 0 0 0;
-            font-size: 1.2em;
+            margin: 3px 0 0 0;
+            font-size: 0.95em; /* Reducido drásticamente */
         }
+
+        /* PANEL DE CONTROL AJUSTADO PROPORCIONALMENTE */
         .control-panel {
             background-color: #111827;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -56,30 +59,31 @@
             flex-direction: column;
         }
         .control-group label {
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             font-weight: bold;
+            font-size: 0.85em; /* Texto guía más discreto */
         }
         .control-group input[type="date"] {
             background-color: #1f2937;
             color: white;
             border: 1px solid #4b5563;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 1em;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
         }
         .btn-group {
             display: flex;
             align-items: center;
             border: 1px solid #4b5563;
-            border-radius: 5px;
+            border-radius: 4px;
             overflow: hidden;
         }
         .btn-group button {
             background-color: #1f2937;
             color: white;
             border: none;
-            padding: 10px 15px;
-            font-size: 1.2em;
+            padding: 6px 12px;
+            font-size: 1em;
             cursor: pointer;
         }
         .btn-group button:hover {
@@ -87,29 +91,29 @@
         }
         .btn-group span {
             background-color: #111827;
-            padding: 10px 20px;
-            font-size: 1.2em;
+            padding: 6px 12px;
+            font-size: 0.95em;
             font-weight: bold;
         }
 
-        /* DISEÑO DE PESTAÑAS */
+        /* PESTAÑAS COMPACTAS AL ESTILO DE AYER */
         .tabs-container {
             display: flex;
             border-bottom: 2px solid #374151;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
         .tab-button {
             background: none;
             border: none;
             color: #9ca3af;
-            padding: 12px 24px;
-            font-size: 1.1em;
+            padding: 8px 16px;
+            font-size: 0.95em; /* Ajustado para que no domine la vista */
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .tab-button:hover {
             color: #ffffff;
@@ -125,7 +129,7 @@
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            border-radius: 10px;
+            border-radius: 8px;
             background-color: #1f2937;
         }
 
@@ -133,24 +137,23 @@
         .tabla-oscura-custom {
             width: 100%;
             border-collapse: collapse;
-            table-layout: auto; /* Excel Mode: Deja que las celdas definan su tamaño ideal */
+            table-layout: auto; 
         }
         .tabla-oscura-custom th, .tabla-oscura-custom td {
-            padding: 10px 8px; /* Padding reducido y optimizado */
+            padding: 10px 8px; 
             text-align: left;
             box-sizing: border-box;
         }
         
-        /* Forzamos el "Autoajustar al texto" en las columnas de datos cortos */
         .col-autoajuste {
             white-space: nowrap; 
-            width: 1%; /* Truco CSS: obliga a la celda a cerrarse justo al tamaño de su contenido */
+            width: 1%; 
         }
 
         .tabla-oscura-custom th {
             background-color: #2563eb;
             color: white;
-            font-size: 1.1em;
+            font-size: 1.05em;
         }
         .tabla-oscura-custom td {
             border-bottom: 1px solid #374151;
@@ -175,47 +178,30 @@
             margin-right: 3px;
         }
 
-        /* AJUSTES DE MEDIA QUERY PARA MÓVILES */
+        /* MEDIA QUERIES PARA REGULAR MÓVILES (FLEXIBILIDAD SIN DEFORMAR) */
         @media (max-width: 768px) {
-            body {
-                padding-top: 10px;
-            }
-            .container {
-                width: 95%;
-                padding: 10px;
-            }
-            .header-banner {
-                padding: 15px 10px;
-                margin-bottom: 15px;
-            }
-            .header-banner h1 {
-                font-size: 1.7em;
-            }
-            .header-banner p {
-                font-size: 1em;
-            }
             .control-panel {
                 flex-direction: column;
                 align-items: stretch;
-                padding: 12px;
-                gap: 10px;
+                padding: 10px;
+                gap: 8px;
             }
             .btn-group button, .btn-group span {
                 flex: 1;
                 text-align: center;
-                padding: 6px;
+                padding: 5px;
             }
             .tabs-container {
-                gap: 5px;
+                gap: 4px;
             }
             .tab-button {
-                padding: 10px 5px;
+                padding: 8px 4px;
                 font-size: 0.85em;
                 flex: 1;
                 justify-content: center;
             }
             .tabla-oscura-custom th, .tabla-oscura-custom td {
-                padding: 6px 5px; /* Padding móvil ultra optimizado */
+                padding: 6px 5px; 
             }
         }
     </style>
@@ -237,7 +223,8 @@
             <label>Tamaño Letra</label>
             <div class="btn-group">
                 <button onclick="cambiarLetra(-1)">-</button>
-                <span id="indicador-letra">10</span> <button onclick="cambiarLetra(1)">+</button>
+                <span id="indicador-letra">10</span> 
+                <button onclick="cambiarLetra(1)">+</button>
             </div>
         </div>
     </div>
@@ -257,7 +244,8 @@
                 <tr>
                     <th class="col-autoajuste">Participante</th>
                     <th class="col-autoajuste">Hora</th>
-                    <th>Encuentro</th> <th class="col-autoajuste">Marcador</th>
+                    <th>Encuentro</th> 
+                    <th class="col-autoajuste">Marcador</th>
                     <th class="col-autoajuste">Resultado</th>
                 </tr>
             </thead>
@@ -268,12 +256,12 @@
 </div>
 
 <script>
-    // Inicialización del tamaño de letra en 10px
     let fontSizeActual = 10; 
     let pestañaActual = 'amigos';
 
     document.getElementById('selector-fecha').addEventListener('change', cargarDatosSegunVista);
 
+    // Mantenemos tu lógica intacta para no romper la comunicación con Flask
     function cambiarPestaña(tipo) {
         pestañaActual = tipo;
         
@@ -380,7 +368,6 @@
     }
 
     window.onload = () => {
-        // Al arrancar, aplicamos la fuente inicial de 10px explícitamente a los elementos base
         cambiarLetra(0);
         cargarDatosSegunVista();
     };
