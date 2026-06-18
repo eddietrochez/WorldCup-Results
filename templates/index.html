@@ -6,7 +6,6 @@
     <title>Quinielas Mundial 2026</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ESTILOS BASE ORIGINALES */
         body {
             background-color: #0b1325;
             color: #ffffff;
@@ -121,7 +120,7 @@
             margin-bottom: -2px;
         }
 
-        /* CONTENEDOR DE TABLA RESPONSIVA (Evita que rompa el móvil) */
+        /* CONTENEDOR DE TABLA RESPONSIVA */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -130,16 +129,24 @@
             background-color: #1f2937;
         }
 
-        /* TABLA ORIGINAL INTEGRAL */
+        /* TABLA CON EFECTO AUTOAJUSTAR COMPACTO (Estilo Excel) */
         .tabla-oscura-custom {
             width: 100%;
             border-collapse: collapse;
-            min-width: 650px; /* Asegura legibilidad de columnas en pantallas chicas */
+            table-layout: auto; /* Excel Mode: Deja que las celdas definan su tamaño ideal */
         }
         .tabla-oscura-custom th, .tabla-oscura-custom td {
-            padding: 15px;
+            padding: 10px 8px; /* Padding reducido y optimizado */
             text-align: left;
+            box-sizing: border-box;
         }
+        
+        /* Forzamos el "Autoajustar al texto" en las columnas de datos cortos */
+        .col-autoajuste {
+            white-space: nowrap; 
+            width: 1%; /* Truco CSS: obliga a la celda a cerrarse justo al tamaño de su contenido */
+        }
+
         .tabla-oscura-custom th {
             background-color: #2563eb;
             color: white;
@@ -147,26 +154,28 @@
         }
         .tabla-oscura-custom td {
             border-bottom: 1px solid #374151;
-            font-size: 1em;
         }
         .text-marcador {
             color: #ffd700;
             font-weight: bold;
+            white-space: nowrap;
         }
         .text-resultado {
             color: #10b981;
             font-weight: bold;
+            white-space: nowrap;
         }
         .text-participante {
             font-weight: bold;
-            background-color: #172237; /* Le da un ligero toque para distinguir bloques de filas */
+            background-color: #161f30;
+            white-space: nowrap;
         }
         .icono-reloj {
             color: #ffffff;
-            margin-right: 5px;
+            margin-right: 3px;
         }
 
-        /* --- OPTIMIZACIONES MEDIA QUERY PARA DISPOSITIVOS MÓVILES --- */
+        /* AJUSTES DE MEDIA QUERY PARA MÓVILES */
         @media (max-width: 768px) {
             body {
                 padding-top: 10px;
@@ -180,7 +189,7 @@
                 margin-bottom: 15px;
             }
             .header-banner h1 {
-                font-size: 1.8em;
+                font-size: 1.7em;
             }
             .header-banner p {
                 font-size: 1em;
@@ -188,31 +197,25 @@
             .control-panel {
                 flex-direction: column;
                 align-items: stretch;
-                padding: 15px;
-                gap: 12px;
-            }
-            .control-group {
-                align-items: stretch;
-            }
-            .btn-group {
-                justify-content: space-between;
+                padding: 12px;
+                gap: 10px;
             }
             .btn-group button, .btn-group span {
                 flex: 1;
                 text-align: center;
-                padding: 8px;
+                padding: 6px;
             }
             .tabs-container {
                 gap: 5px;
             }
             .tab-button {
                 padding: 10px 5px;
-                font-size: 0.9em;
+                font-size: 0.85em;
                 flex: 1;
                 justify-content: center;
             }
             .tabla-oscura-custom th, .tabla-oscura-custom td {
-                padding: 10px 8px; /* Compacta las celdas para leer más datos en pantalla */
+                padding: 6px 5px; /* Padding móvil ultra optimizado */
             }
         }
     </style>
@@ -234,8 +237,7 @@
             <label>Tamaño Letra</label>
             <div class="btn-group">
                 <button onclick="cambiarLetra(-1)">-</button>
-                <span id="indicador-letra">14</span>
-                <button onclick="cambiarLetra(1)">+</button>
+                <span id="indicador-letra">10</span> <button onclick="cambiarLetra(1)">+</button>
             </div>
         </div>
     </div>
@@ -253,11 +255,10 @@
         <table class="tabla-oscura-custom" id="tabla-quinielas">
             <thead>
                 <tr>
-                    <th style="width: 20%;">Participante</th>
-                    <th style="width: 15%;">Hora</th>
-                    <th style="width: 35%;">Encuentro</th>
-                    <th style="width: 15%;">Marcador</th>
-                    <th style="width: 15%;">Resultado</th>
+                    <th class="col-autoajuste">Participante</th>
+                    <th class="col-autoajuste">Hora</th>
+                    <th>Encuentro</th> <th class="col-autoajuste">Marcador</th>
+                    <th class="col-autoajuste">Resultado</th>
                 </tr>
             </thead>
             <tbody id="cuerpo-tabla">
@@ -267,7 +268,8 @@
 </div>
 
 <script>
-    let fontSizeActual = 14; 
+    // Inicialización del tamaño de letra en 10px
+    let fontSizeActual = 10; 
     let pestañaActual = 'amigos';
 
     document.getElementById('selector-fecha').addEventListener('change', cargarDatosSegunVista);
@@ -348,17 +350,17 @@
 
                 let tdParticipante = '';
                 if (index === 0) {
-                    tdParticipante = `<td class="text-participante" rowspan="${partidos.length}">${participante}</td>`;
+                    tdParticipante = `<td class="text-participante col-autoajuste" rowspan="${partidos.length}">${participante}</td>`;
                 }
 
                 let horaMostrar = partido.hora ? partido.hora : `<span style="color:#6b7280; font-size:0.9em;">N/A</span>`;
 
                 tr.innerHTML = `
                     ${tdParticipante}
-                    <td><i class="fa-regular fa-clock icono-reloj"></i> ${horaMostrar}</td>
+                    <td class="col-autoajuste"><i class="fa-regular fa-clock icono-reloj"></i> ${horaMostrar}</td>
                     <td style="font-weight: 600;">${partido.encuentro}</td>
-                    <td class="text-marcador">${partido.marcador}</td>
-                    <td class="text-resultado">${partido.resultado}</td>
+                    <td class="text-marcador col-autoajuste">${partido.marcador}</td>
+                    <td class="text-resultado col-autoajuste">${partido.resultado}</td>
                 `;
                 
                 tbody.appendChild(tr);
@@ -378,6 +380,8 @@
     }
 
     window.onload = () => {
+        // Al arrancar, aplicamos la fuente inicial de 10px explícitamente a los elementos base
+        cambiarLetra(0);
         cargarDatosSegunVista();
     };
 </script>
