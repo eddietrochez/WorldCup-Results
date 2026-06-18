@@ -43,7 +43,7 @@
             font-size: 0.95em;
         }
 
-        /* PANEL DE CONTROL REDISEÑADO (Ultra compacto y discreto) */
+        /* PANEL DE CONTROL */
         .control-panel {
             background-color: #111827;
             border-radius: 8px;
@@ -72,6 +72,12 @@
             border-radius: 4px;
             font-size: 0.85em;
         }
+        .control-group input[type="date"]:disabled {
+            background-color: #374151;
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #1f2937;
+        }
         
         /* Mini control de fuente */
         .mini-font-control {
@@ -91,7 +97,7 @@
             cursor: pointer;
             font-weight: bold;
         }
-        .mini-font-control button:hover {
+        .mini-font-control button:hover:not(:disabled) {
             background-color: #374151;
             color: white;
         }
@@ -114,14 +120,16 @@
             background: none;
             border: none;
             color: #9ca3af;
-            padding: 8px 16px;
-            font-size: 0.95em;
+            padding: 8px 12px;
+            font-size: 0.65em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 6px;
+            flex: 1;
+            justify-content: center;
         }
         .tab-button:hover {
             color: #ffffff;
@@ -158,11 +166,21 @@
             width: 1%; 
         }
 
-        /* Ajustar texto de Excel para los Participantes */
+        /* Ajustar texto para la columna Participante */
         .col-ajustar-texto {
             white-space: normal !important; 
             word-wrap: break-word;
-            max-width: 70px; 
+            max-width: 85px; 
+        }
+
+        /* Estilos específicos para la alineación compacta de estadísticas */
+        .text-centro {
+            text-align: center !important;
+        }
+        .text-pts {
+            color: #ffd700;
+            font-weight: bold;
+            text-align: center !important;
         }
 
         .tabla-oscura-custom th {
@@ -195,14 +213,10 @@
         }
 
         @media (max-width: 768px) {
-            .tabs-container {
-                gap: 4px;
-            }
             .tab-button {
                 padding: 8px 4px;
-                font-size: 0.85em;
-                flex: 1;
-                justify-content: center;
+                font-size: 0.5em;
+                gap: 4px;
             }
             .tabla-oscura-custom th, .tabla-oscura-custom td {
                 padding: 6px 5px; 
@@ -240,21 +254,17 @@
         <button class="tab-button" id="tab-oficial" onclick="cambiarPestaña('oficial')">
             <i class="fa-solid fa-earth-americas"></i> Oficiales (FIFA)
         </button>
+        <button class="tab-button" id="tab-posiciones" onclick="cambiarPestaña('posiciones')">
+            <i class="fa-solid fa-ranking-star"></i> Posiciones
+        </button>
     </div>
 
     <div class="table-responsive">
         <table class="tabla-oscura-custom" id="tabla-quinielas">
-            <thead>
-                <tr>
-                    <th class="col-ajustar-texto">Participante</th>
-                    <th class="col-autoajuste">Hora</th>
-                    <th>Encuentro</th> 
-                    <th class="col-autoajuste">Marcador</th>
-                    <th class="col-autoajuste">Resultado</th>
-                </tr>
-            </thead>
+            <thead id="encabezado-tabla">
+                </thead>
             <tbody id="cuerpo-tabla">
-            </tbody>
+                </tbody>
         </table>
     </div>
 </div>
@@ -270,16 +280,26 @@
         
         document.getElementById('tab-predicciones').classList.remove('active');
         document.getElementById('tab-oficial').classList.remove('active');
+        document.getElementById('tab-posiciones').classList.remove('active');
         
+        const selectorFecha = document.getElementById('selector-fecha');
+
         if (tipo === 'predicciones') {
             document.getElementById('tab-predicciones').classList.add('active');
             document.getElementById('subtitulo-vista').innerText = "Predicciones del Día";
-        } else {
+            selectorFecha.disabled = false;
+            cargarDatosSegunVista();
+        } else if (tipo === 'oficial') {
             document.getElementById('tab-oficial').classList.add('active');
             document.getElementById('subtitulo-vista').innerText = "Resultados Reales Oficiales";
+            selectorFecha.disabled = false;
+            cargarDatosSegunVista();
+        } else if (tipo === 'posiciones') {
+            document.getElementById('tab-posiciones').classList.add('active');
+            document.getElementById('subtitulo-vista').innerText = "Tabla General de Posiciones";
+            selectorFecha.disabled = true;
+            cargarTablaPosiciones();
         }
-        
-        cargarDatosSegunVista();
     }
 
     function obtenerFechaHoy() {
@@ -294,14 +314,30 @@
         return `${yyyy}-${mm}-${dd}`;
     }
 
+    function armarEncabezadoJornadas() {
+        const thead = document.getElementById('encabezado-tabla');
+        thead.innerHTML = `
+            <tr>
+                <th class="col-ajustar-texto">Participante</th>
+                <th class="col-autoajuste">Hora</th>
+                <th>Encuentro</th> 
+                <th class="col-autoajuste">Marcador</th>
+                <th class="col-autoajuste">Resultado</th>
+            </tr>
+        `;
+    }
+
     function cargarDatosSegunVista() {
         const fechaSeleccionada = document.getElementById('selector-fecha').value;
         const fechaHoy = obtenerFechaHoy();
 
+        // Aseguramos que los encabezados correspondan a jornadas
+        armarEncabezadoJornadas();
+
         if (pestañaActual === 'oficial' && fechaSeleccionada === fechaHoy) {
             const tbody = document.getElementById('cuerpo-tabla');
             tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ffd700; font-weight: bold; padding: 30px; font-size: ${fontSizeActual}px;"><i class="fa-solid fa-hourglass-half"></i> Resultados pendientes</td></tr>`;
-            ajustarEstilosFuentes(); // Aplicar fuente al mensaje temporal
+            ajustarEstilosFuentes(); 
             return;
         }
 
@@ -314,16 +350,16 @@
         })
         .then(res => res.json())
         .then(data => {
-            renderizarTabla(data.datos || {});
+            renderizarTablaPartidos(data.datos || {});
         })
         .catch(err => {
-            console.error("Error al cargar datos:", err);
+            console.error("Error al cargar encuentros:", err);
             document.getElementById('cuerpo-tabla').innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ef4444; padding: 20px;">Error al obtener información del servidor.</td></tr>`;
             ajustarEstilosFuentes();
         });
     }
 
-    function renderizarTabla(datos) {
+    function renderizarTablaPartidos(datos) {
         const tbody = document.getElementById('cuerpo-tabla');
         tbody.innerHTML = '';
 
@@ -346,7 +382,6 @@
             
             partidos.forEach((partido, index) => {
                 const tr = document.createElement('tr');
-                tr.style.fontSize = `${fontSizeActual}px`;
 
                 let tdParticipante = '';
                 if (index === 0) {
@@ -370,6 +405,59 @@
         ajustarEstilosFuentes();
     }
 
+    function cargarTablaPosiciones() {
+        const thead = document.getElementById('encabezado-tabla');
+        thead.innerHTML = `
+            <tr>
+                <th class="col-autoajuste text-centro">Pos</th>
+                <th class="col-ajustar-texto">Participante</th>
+                <th class="col-autoajuste text-centro">PJ</th>
+                <th class="col-autoajuste text-centro" title="Marcadores Exactos (3 pts)">MA</th>
+                <th class="col-autoajuste text-centro" title="Ganador/Empate Acertado (2 pts)">RA</th>
+                <th class="col-autoajuste text-centro" title="Fallados (0 pts)">P</th>
+                <th class="col-autoajuste text-centro">Pts</th>
+            </tr>
+        `;
+
+        fetch('/obtener_posiciones')
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.getElementById('cuerpo-tabla');
+            tbody.innerHTML = '';
+
+            const posiciones = data.posiciones || [];
+
+            if (posiciones.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: #9ca3af; padding: 30px;">Aún no hay partidos oficiales finalizados para calcular posiciones.</td></tr>`;
+                ajustarEstilosFuentes();
+                return;
+            }
+
+            posiciones.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                let posStyle = (index === 0) ? 'font-weight: bold; color: #ffd700;' : 'font-weight: bold; color: #9ca3af;';
+
+                tr.innerHTML = `
+                    <td class="col-autoajuste text-centro" style="${posStyle}">${index + 1}</td>
+                    <td class="text-participante col-ajustar-texto">${row.participante}</td>
+                    <td class="col-autoajuste text-centro">${row.pj}</td>
+                    <td class="col-autoajuste text-centro" style="color: #34d399; font-weight: 500;">${row.g}</td>
+                    <td class="col-autoajuste text-centro" style="color: #60a5fa;">${row.e}</td>
+                    <td class="col-autoajuste text-centro" style="color: #f87171;">${row.p}</td>
+                    <td class="col-autoajuste text-pts">${row.pts}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            ajustarEstilosFuentes();
+        })
+        .catch(err => {
+            console.error("Error al cargar tabla de posiciones:", err);
+            document.getElementById('cuerpo-tabla').innerHTML = `<tr><td colspan="7" style="text-align: center; color: #ef4444; padding: 20px;">Error al calcular el ranking en el servidor.</td></tr>`;
+            ajustarEstilosFuentes();
+        });
+    }
+
     function cambiarLetra(factor) {
         fontSizeActual += factor;
         if (fontSizeActual < 6) fontSizeActual = 6;
@@ -379,7 +467,6 @@
         ajustarEstilosFuentes();
     }
 
-    // CORRECCIÓN PROTEGIDA: Verifica si hay elementos antes de recorrerlos para evitar crasheos de JS
     function ajustarEstilosFuentes() {
         const elementos = document.querySelectorAll('#cuerpo-tabla tr, #cuerpo-tabla td, .tabla-oscura-custom th');
         if (elementos && elementos.length > 0) {
@@ -390,7 +477,11 @@
     }
 
     window.onload = () => {
-        // Ejecutamos primero la carga para crear el HTML de las tablas y luego inicializamos la fuente
+        // 1. Armamos la estructura inicial del encabezado
+        armarEncabezadoJornadas();
+        // 2. Inicializamos el indicador visual de la fuente
+        cambiarLetra(0);
+        // 3. Traemos los datos de la jornada seleccionada
         cargarDatosSegunVista();
     };
 </script>
