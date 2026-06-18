@@ -26,24 +26,24 @@
             box-sizing: border-box;
         }
         
-        /* BANNER SUPERIOR MÁS COMPACTO */
+        /* BANNER SUPERIOR CON TÍTULO MÁS GRANDE */
         .header-banner {
             background-color: #2563eb;
             border-radius: 8px;
-            padding: 10px;
+            padding: 12px 10px;
             text-align: center;
             margin-bottom: 12px;
         }
         .header-banner h1 {
             margin: 0;
-            font-size: 1.4em; /* Reducido drásticamente */
+            font-size: 1.9em; /* Título recuperado (Más grande y vistoso) */
         }
         .header-banner p {
             margin: 3px 0 0 0;
-            font-size: 0.95em; /* Reducido drásticamente */
+            font-size: 0.95em;
         }
 
-        /* PANEL DE CONTROL AJUSTADO PROPORCIONALMENTE */
+        /* PANEL DE CONTROL COMPACTO */
         .control-panel {
             background-color: #111827;
             border-radius: 8px;
@@ -61,7 +61,7 @@
         .control-group label {
             margin-bottom: 3px;
             font-weight: bold;
-            font-size: 0.85em; /* Texto guía más discreto */
+            font-size: 0.85em;
         }
         .control-group input[type="date"] {
             background-color: #1f2937;
@@ -96,7 +96,7 @@
             font-weight: bold;
         }
 
-        /* PESTAÑAS COMPACTAS AL ESTILO DE AYER */
+        /* PESTAÑAS ESTILO COMPACTO */
         .tabs-container {
             display: flex;
             border-bottom: 2px solid #374151;
@@ -107,7 +107,7 @@
             border: none;
             color: #9ca3af;
             padding: 8px 16px;
-            font-size: 0.95em; /* Ajustado para que no domine la vista */
+            font-size: 0.95em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
@@ -150,10 +150,14 @@
             width: 1%; 
         }
 
+        /* CORRECCIÓN: Encabezados de la tabla reducidos estrictamente a 9px */
         .tabla-oscura-custom th {
             background-color: #2563eb;
             color: white;
-            font-size: 1.05em;
+            font-size: 9px !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .tabla-oscura-custom td {
             border-bottom: 1px solid #374151;
@@ -178,7 +182,7 @@
             margin-right: 3px;
         }
 
-        /* MEDIA QUERIES PARA REGULAR MÓVILES (FLEXIBILIDAD SIN DEFORMAR) */
+        /* MEDIA QUERIES PARA CONTROL DE COMPACTACIÓN EN CELULARES */
         @media (max-width: 768px) {
             .control-panel {
                 flex-direction: column;
@@ -223,8 +227,7 @@
             <label>Tamaño Letra</label>
             <div class="btn-group">
                 <button onclick="cambiarLetra(-1)">-</button>
-                <span id="indicador-letra">10</span> 
-                <button onclick="cambiarLetra(1)">+</button>
+                <span id="indicador-letra">9</span> <button onclick="cambiarLetra(1)">+</button>
             </div>
         </div>
     </div>
@@ -256,12 +259,12 @@
 </div>
 
 <script>
-    let fontSizeActual = 10; 
+    // Inicialización del tamaño de letra del contenido a 9px
+    let fontSizeActual = 9; 
     let pestañaActual = 'amigos';
 
     document.getElementById('selector-fecha').addEventListener('change', cargarDatosSegunVista);
 
-    // Mantenemos tu lógica intacta para no romper la comunicación con Flask
     function cambiarPestaña(tipo) {
         pestañaActual = tipo;
         
