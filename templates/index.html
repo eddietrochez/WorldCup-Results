@@ -235,7 +235,14 @@
     <div class="control-panel">
         <div class="control-group">
             <label><i class="fa-solid fa-calendar-days"></i></label>
-            <input type="date" id="selector-fecha" value="2026-06-18">
+            <input type="date" id="selector-fecha">
+
+<script>
+  // Obtiene la fecha local de hoy en formato YYYY-MM-DD
+  const hoy = new Date().toISOString().split('T')[0];
+  document.getElementById('selector-fecha').value = hoy;
+</script>
+
         </div>
         <div class="control-group">
             <label><i class="fa-solid fa-text-height"></i></label>
