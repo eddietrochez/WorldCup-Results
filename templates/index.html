@@ -334,12 +334,6 @@
         // Aseguramos que los encabezados correspondan a jornadas
         armarEncabezadoJornadas();
 
-        if (pestañaActual === 'oficial' && fechaSeleccionada === fechaHoy) {
-            const tbody = document.getElementById('cuerpo-tabla');
-            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ffd700; font-weight: bold; padding: 30px; font-size: ${fontSizeActual}px;"><i class="fa-solid fa-hourglass-half"></i> Resultados pendientes</td></tr>`;
-            ajustarEstilosFuentes(); 
-            return;
-        }
 
         const urlEndpoint = pestañaActual === 'predicciones' ? '/obtener_datos' : '/obtener_datos_oficiales';
         
