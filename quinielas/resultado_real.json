@@ -198,5 +198,15 @@
                 "resultado": "México"
             }
         ]
+    },
+   "2026-06-19": {
+        "Resultado Real": [
+            {
+                "hora": "13:00",
+                "encuentro": "Estados Unidos vs Australia",
+                "marcador": "2-0",
+                "resultado": "Estados Unidos"
+            } 
+        ]
     }
 }
