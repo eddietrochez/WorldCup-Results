@@ -190,6 +190,12 @@
                 "encuentro": "Canadá vs Catar",
                 "marcador": "6-0",
                 "resultado": "Canadá"
+            },
+            {
+                "hora": "19:00",
+                "encuentro": "México vs Corea del Sur",
+                "marcador": "1-0",
+                "resultado": "México"
             }
         ]
     }
