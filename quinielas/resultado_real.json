@@ -224,6 +224,12 @@
                 "encuentro": "Turquía vs Paraguay",
                 "marcador": "0-1",
                 "resultado": "Paraguay"
+            },
+            {
+                "hora": "11:00",
+                "encuentro": "Países Bajos vs Suecia",
+                "marcador": "5-1",
+                "resultado": "Países Bajos"
             }
         ]
     }
