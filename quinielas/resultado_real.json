@@ -206,6 +206,12 @@
                 "encuentro": "Estados Unidos vs Australia",
                 "marcador": "2-0",
                 "resultado": "Estados Unidos"
+            },
+            {
+                "hora": "16:00",
+                "encuentro": "Escocia vs Marruecos",
+                "marcador": "0-1",
+                "resultado": "Marruecos"
             } 
         ]
     }
