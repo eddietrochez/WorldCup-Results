@@ -212,7 +212,13 @@
                 "encuentro": "Escocia vs Marruecos",
                 "marcador": "0-1",
                 "resultado": "Marruecos"
-            } 
+            },
+            {
+                "hora": "18:30",
+                "encuentro": "Brasil vs Haití",
+                "marcador": "3-0",
+                "resultado": "Brasil"
+            }
         ]
     }
 }
