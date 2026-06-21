@@ -238,11 +238,28 @@
             <input type="date" id="selector-fecha">
 
 <script>
-  // Obtiene la fecha local de hoy en formato YYYY-MM-DD
-  const hoy = new Date().toISOString().split('T')[0];
-  document.getElementById('selector-fecha').value = hoy;
+    // 1. Función para obtener la fecha local de Honduras (UTC-6)
+    function obtenerFechaHonduras() {
+        const ahora = new Date();
+        const offsetHonduras = -6 * 60 * 60 * 1000; // -6 horas
+        const fechaLocal = new Date(ahora.getTime() + offsetHonduras);
+        return fechaLocal.toISOString().split('T')[0];
+    }
+
+    // 2. Inicialización al cargar la página
+    document.getElementById('selector-fecha').value = obtenerFechaHonduras();
+
+    // 3. Listener para detectar cambios manuales en el selector
+    document.getElementById('selector-fecha').addEventListener('change', function() {
+        const fechaSeleccionada = this.value;
+        console.log("Cambiando a fecha: " + fechaSeleccionada);
+        
+        // Aquí deberías llamar a la función que actualiza tu tabla/contenido
+        // ejemplo: cargarDatos(fechaSeleccionada);
+    });
 </script>
 
+            
         </div>
         <div class="control-group">
             <label><i class="fa-solid fa-text-height"></i></label>
