@@ -262,7 +262,13 @@
                 "encuentro": "España vs Arabia Saudita",
                 "marcador": "4-0",
                 "resultado": "España"
+            },
+            {
+                "hora": "00:00",
+                "encuentro": "Bélgica vs Irán",
+                "marcador": "0-0",
+                "resultado": "Empate"
             }
-        ] 
+        ]
     }
 }
