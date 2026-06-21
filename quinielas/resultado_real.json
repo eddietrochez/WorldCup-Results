@@ -254,5 +254,15 @@
                 "resultado": "Japón"
             }
         ]
+    },
+    "2026-06-21": {
+        "Aaron-Leon": [
+            {
+                "hora": "10:00",
+                "encuentro": "España vs Arabia Saudita",
+                "marcador": "4-0",
+                "resultado": "España"
+            }
+        ]
     }
 }
