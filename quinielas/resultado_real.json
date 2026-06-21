@@ -246,6 +246,12 @@
                 "encuentro": "Ecuador vs Curazao",
                 "marcador": "0-0",
                 "resultado": "Empate"
+            },
+            {
+                "hora": "22:00",
+                "encuentro": "Túnez vs Japón",
+                "marcador": "0-4",
+                "resultado": "Japón"
             }
         ]
     }
