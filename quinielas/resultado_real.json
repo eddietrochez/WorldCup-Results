@@ -240,6 +240,12 @@
                 "encuentro": "Alemania vs Costa de Marfil",
                 "marcador": "2-1",
                 "resultado": "Alemania"
+            },
+            {
+                "hora": "18:00",
+                "encuentro": "Ecuador vs Curazao",
+                "marcador": "0-0",
+                "resultado": "Empate"
             }
         ]
     }
