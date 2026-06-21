@@ -3,13 +3,13 @@
         "Resultado Real": [
             {
                 "hora": "13:00",
-                "encuentro": "Mexico vs Sudáfrica",
+                "encuentro": "Mexico vs Sud\u00e1frica",
                 "marcador": "2-0",
                 "resultado": "Mexico"
             },
             {
                 "hora": "20:00",
-                "encuentro": "Corea del Sur vs República Checa",
+                "encuentro": "Corea del Sur vs Rep\u00fablica Checa",
                 "marcador": "2-1",
                 "resultado": "Corea del Sur"
             }
@@ -47,13 +47,13 @@
             },
             {
                 "hora": "19:00",
-                "encuentro": "Haití vs Escocia",
+                "encuentro": "Hait\u00ed vs Escocia",
                 "marcador": "0-1",
                 "resultado": "Scotland"
             },
             {
                 "hora": "22:00",
-                "encuentro": "Australia vs Turquía",
+                "encuentro": "Australia vs Turqu\u00eda",
                 "marcador": "2-0",
                 "resultado": "Australia"
             }
@@ -69,7 +69,7 @@
             },
             {
                 "hora": "14:00",
-                "encuentro": "Países Bajos vs Japón",
+                "encuentro": "Pa\u00edses Bajos vs Jap\u00f3n",
                 "marcador": "2-2",
                 "resultado": "Empate"
             },
@@ -81,7 +81,7 @@
             },
             {
                 "hora": "20:00",
-                "encuentro": "Suecia vs Túnez",
+                "encuentro": "Suecia vs T\u00fanez",
                 "marcador": "5-1",
                 "resultado": "Suecia"
             }
@@ -91,13 +91,13 @@
         "Resultado Real": [
             {
                 "hora": "10:00",
-                "encuentro": "España vs Cabo Verde",
+                "encuentro": "Espa\u00f1a vs Cabo Verde",
                 "marcador": "0-0",
                 "resultado": "Empate"
             },
             {
                 "hora": "13:00",
-                "encuentro": "Bélgica vs Egipto",
+                "encuentro": "B\u00e9lgica vs Egipto",
                 "marcador": "1-1",
                 "resultado": "Empate"
             },
@@ -109,7 +109,7 @@
             },
             {
                 "hora": "19:00",
-                "encuentro": "Irán vs Nueva Zelanda",
+                "encuentro": "Ir\u00e1n vs Nueva Zelanda",
                 "marcador": "2-2",
                 "resultado": "Empate"
             }
@@ -159,23 +159,23 @@
             },
             {
                 "hora": "17:00",
-                "encuentro": "Ghana vs Panamá",
+                "encuentro": "Ghana vs Panam\u00e1",
                 "marcador": "1-0",
                 "resultado": "Ghana"
             },
             {
                 "hora": "20:00",
-                "encuentro": "Uzbekistán vs Colombia",
+                "encuentro": "Uzbekist\u00e1n vs Colombia",
                 "marcador": "1-3",
                 "resultado": "Colombia"
             }
         ]
     },
-   "2026-06-18": {
+    "2026-06-18": {
         "Resultado Real": [
             {
                 "hora": "10:00",
-                "encuentro": "República Checa vs Sudáfrica",
+                "encuentro": "Rep\u00fablica Checa vs Sud\u00e1frica",
                 "marcador": "1-1",
                 "resultado": "Empate"
             },
@@ -187,19 +187,19 @@
             },
             {
                 "hora": "16:00",
-                "encuentro": "Canadá vs Catar",
-                "marcador": "6-0",
-                "resultado": "Canadá"
+                "encuentro": "Canad\u00e1 vs Catar",
+                "marcador": "7-0",
+                "resultado": "Canad\u00e1"
             },
             {
                 "hora": "19:00",
-                "encuentro": "México vs Corea del Sur",
+                "encuentro": "M\u00e9xico vs Corea del Sur",
                 "marcador": "1-0",
-                "resultado": "México"
+                "resultado": "M\u00e9xico"
             }
         ]
     },
-   "2026-06-19": {
+    "2026-06-19": {
         "Resultado Real": [
             {
                 "hora": "13:00",
@@ -215,26 +215,26 @@
             },
             {
                 "hora": "18:30",
-                "encuentro": "Brasil vs Haití",
+                "encuentro": "Brasil vs Hait\u00ed",
                 "marcador": "3-0",
                 "resultado": "Brasil"
             },
             {
                 "hora": "21:00",
-                "encuentro": "Turquía vs Paraguay",
+                "encuentro": "Turqu\u00eda vs Paraguay",
                 "marcador": "0-1",
                 "resultado": "Paraguay"
             }
         ]
     },
-   "2026-06-20": {
+    "2026-06-20": {
         "Resultado Real": [
             {
                 "hora": "11:00",
-                "encuentro": "Países Bajos vs Suecia",
+                "encuentro": "Pa\u00edses Bajos vs Suecia",
                 "marcador": "5-1",
-                "resultado": "Países Bajos"
-            }, 
+                "resultado": "Pa\u00edses Bajos"
+            },
             {
                 "hora": "14:00",
                 "encuentro": "Alemania vs Costa de Marfil",
@@ -249,9 +249,9 @@
             },
             {
                 "hora": "22:00",
-                "encuentro": "Túnez vs Japón",
+                "encuentro": "T\u00fanez vs Jap\u00f3n",
                 "marcador": "0-4",
-                "resultado": "Japón"
+                "resultado": "Jap\u00f3n"
             }
         ]
     },
@@ -259,9 +259,9 @@
         "Resultado Real": [
             {
                 "hora": "10:00",
-                "encuentro": "España vs Arabia Saudita",
+                "encuentro": "Espa\u00f1a vs Arabia Saudita",
                 "marcador": "4-0",
-                "resultado": "España"
+                "resultado": "Espa\u00f1a"
             }
         ]
     }
