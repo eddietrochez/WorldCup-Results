@@ -274,6 +274,12 @@
                 "encuentro": "Uruguay vs Cabo Verde",
                 "marcador": "2-2",
                 "resultado": "Empate"
+            },
+            {
+                "hora": "19:00",
+                "encuentro": "Nueva Zelanda vs Egipto",
+                "marcador": "1-3",
+                "resultado": "Egipto"
             }
         ]
     }
