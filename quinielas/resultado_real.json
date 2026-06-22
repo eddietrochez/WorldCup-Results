@@ -282,5 +282,15 @@
                 "resultado": "Egipto"
             }
         ]
+    },
+    "2026-06-22": {
+        "Resultado Real": [
+            {
+                "hora": "11:00",
+                "encuentro": "Argentina vs Austria",
+                "marcador": "2-0",
+                "resultado": "Argentina"
+            }
+        ]
     }
 }
