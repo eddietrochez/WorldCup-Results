@@ -268,6 +268,12 @@
                 "encuentro": "Bélgica vs Irán",
                 "marcador": "0-0",
                 "resultado": "Empate"
+            },
+            {
+                "hora": "00:00",
+                "encuentro": "Uruguay vs Cabo Verde",
+                "marcador": "2-2",
+                "resultado": "Empate"
             }
         ]
     }
