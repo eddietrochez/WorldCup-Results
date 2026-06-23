@@ -310,5 +310,15 @@
                 "resultado": "Argelia"
             }
         ]
+    },
+    "2026-06-23": {
+        "Resultado Real": [
+            {
+                "hora": "11:00",
+                "encuentro": "Portugal vs Uzbekistán",
+                "marcador": "5-0",
+                "resultado": "Portugal"
+            }
+        ]
     }
 }
