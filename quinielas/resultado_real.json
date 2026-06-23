@@ -290,6 +290,12 @@
                 "encuentro": "Argentina vs Austria",
                 "marcador": "2-0",
                 "resultado": "Argentina"
+            },
+            {
+                "hora": "15:00",
+                "encuentro": "Francia vs Irak",
+                "marcador": "3-0",
+                "resultado": "Francia"
             }
         ]
     }
