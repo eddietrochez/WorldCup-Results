@@ -296,6 +296,12 @@
                 "encuentro": "Francia vs Irak",
                 "marcador": "3-0",
                 "resultado": "Francia"
+            },
+            {
+                "hora": "18:00",
+                "encuentro": "Noruega vs Senegal",
+                "marcador": "3-2",
+                "resultado": "Noruega"
             }
         ]
     }
