@@ -302,6 +302,12 @@
                 "encuentro": "Noruega vs Senegal",
                 "marcador": "3-2",
                 "resultado": "Noruega"
+            },
+            {
+                "hora": "21:00",
+                "encuentro": "Jordania vs Argelia",
+                "marcador": "1-2",
+                "resultado": "Argelia"
             }
         ]
     }
