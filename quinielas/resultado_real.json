@@ -330,6 +330,12 @@
                 "encuentro": "Panamá vs Croacia",
                 "marcador": "0-1",
                 "resultado": "Croacia"
+            },
+            {
+                "hora": "20:00",
+                "encuentro": "Colombia vs RD Congo",
+                "marcador": "1-0",
+                "resultado": "Colombia"
             }
         ]
     }
