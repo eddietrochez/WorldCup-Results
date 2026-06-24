@@ -338,5 +338,15 @@
                 "resultado": "Colombia"
             }
         ]
+    },
+    "2026-06-24": {
+        "Resultado Real": [
+            {
+                "hora": "13:00",
+                "encuentro": "Suiza vs Canadá",
+                "marcador": "2-1",
+                "resultado": "Suiza"
+            }
+        ]
     }
 }
