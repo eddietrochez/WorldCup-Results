@@ -378,5 +378,15 @@
                 "resultado": "Sudáfrica"
             }
         ]
+    },
+    "2026-06-25": {
+        "Resultado Real": [
+            {
+                "hora": "14:00",
+                "encuentro": "Curazao vs Costa de Marfil",
+                "marcador": "0-2",
+                "resultado": "Costa de Marfil"
+            }
+        ]
     }
 }
