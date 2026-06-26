@@ -426,6 +426,12 @@
                 "encuentro": "Senegal vs Irak",
                 "marcador": "5-0",
                 "resultado": "Senegal"
+            },
+            {
+                "hora": "13:00",
+                "encuentro": "Noruega vs Francia",
+                "marcador": "1-4",
+                "resultado": "Francia"
             }
         ]
     }
