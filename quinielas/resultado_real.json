@@ -392,6 +392,12 @@
                 "encuentro": "Ecuador vs Alemania",
                 "marcador": "2-1",
                 "resultado": "Ecuador"
+            },
+            {
+                "hora": "17:00",
+                "encuentro": "Japón vs Suecia",
+                "marcador": "1-1",
+                "resultado": "Empate"
             }
         ]
     }
