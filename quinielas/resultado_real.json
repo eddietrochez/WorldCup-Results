@@ -410,6 +410,12 @@
                 "encuentro": "Paraguay vs Australia",
                 "marcador": "0-0",
                 "resultado": "Empate"
+            },
+            {
+                "hora": "20:00",
+                "encuentro": "Turquía vs Estados Unidos",
+                "marcador": "2-2",
+                "resultado": "Empate"
             }
         ]
     }
