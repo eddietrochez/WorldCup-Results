@@ -418,5 +418,15 @@
                 "resultado": "Turquía"
             }
         ]
+    },
+    "2026-06-26": {
+        "Resultado Real": [
+            {
+                "hora": "13:00",
+                "encuentro": "Senegal vs Irak",
+                "marcador": "5-0",
+                "resultado": "Senegal"
+            }
+        ]
     }
 }
