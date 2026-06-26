@@ -404,6 +404,12 @@
                 "encuentro": "Túnez vs Países Bajos",
                 "marcador": "1-3",
                 "resultado": "Países Bajos"
+            },
+            {
+                "hora": "20:00",
+                "encuentro": "Paraguay vs Australia",
+                "marcador": "0-0",
+                "resultado": "Empate"
             }
         ]
     }
