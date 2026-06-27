@@ -450,6 +450,12 @@
                 "encuentro": "Egipto vs Irán",
                 "marcador": "1-2",
                 "resultado": "Irán"
+            },
+            {
+                "hora": "21:00",
+                "encuentro": "Nueva Zelanda vs Bélgica",
+                "marcador": "1-5",
+                "resultado": "Bélgica"
             }
         ]
     }
