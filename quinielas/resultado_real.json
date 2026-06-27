@@ -432,6 +432,12 @@
                 "encuentro": "Noruega vs Francia",
                 "marcador": "1-4",
                 "resultado": "Francia"
+            },
+            {
+                "hora": "18:00",
+                "encuentro": "Cabo Verde vs Arabia Saudita",
+                "marcador": "0-0",
+                "resultado": "Empate"
             }
         ]
     }
