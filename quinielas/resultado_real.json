@@ -438,6 +438,12 @@
                 "encuentro": "Cabo Verde vs Arabia Saudita",
                 "marcador": "0-0",
                 "resultado": "Empate"
+            },
+            {
+                "hora": "18:00",
+                "encuentro": "Uruguay vs España",
+                "marcador": "0-1",
+                "resultado": "España"
             }
         ]
     }
