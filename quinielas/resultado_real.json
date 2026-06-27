@@ -466,6 +466,12 @@
                 "encuentro": "Panamá vs Inglaterra",
                 "marcador": "0-2",
                 "resultado": "Inglaterra"
+            },
+            {
+                "hora": "15:00",
+                "encuentro": "Croacia vs Ghana",
+                "marcador": "2-1",
+                "resultado": "Croacia"
             }
         ]
     }
