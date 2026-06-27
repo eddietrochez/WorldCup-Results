@@ -458,5 +458,15 @@
                 "resultado": "Bélgica"
             }
         ]
+    },
+    "2026-06-27": {
+        "Resultado Real": [
+            {
+                "hora": "15:00",
+                "encuentro": "Panamá vs Inglaterra",
+                "marcador": "0-2",
+                "resultado": "Inglaterra"
+            }
+        ]
     }
 }
