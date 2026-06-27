@@ -444,6 +444,12 @@
                 "encuentro": "Uruguay vs España",
                 "marcador": "0-1",
                 "resultado": "España"
+            },
+            {
+                "hora": "21:00",
+                "encuentro": "Egipto vs Irán",
+                "marcador": "1-2",
+                "resultado": "Irán"
             }
         ]
     }
