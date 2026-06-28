@@ -490,6 +490,12 @@
                 "encuentro": "Jordania vs Argentina",
                 "marcador": "1-3",
                 "resultado": "Argentina"
+            },
+            {
+                "hora": "20:00",
+                "encuentro": "Argelia vs Austria",
+                "marcador": "3-2",
+                "resultado": "Argelia"
             }
         ]
     }
